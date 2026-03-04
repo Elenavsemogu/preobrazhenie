@@ -196,7 +196,7 @@
   <section class="scroll-video" id="scrollSection">
     <div class="scroll-video__sticky">
       <video id="scrollVideo" muted playsinline preload="auto">
-        <source src="assets/flowers-scroll-light.mp4" type="video/mp4">
+        <source src="assets/flowers-scroll-mid.mp4" type="video/mp4">
       </video>
     </div>
   </section>
@@ -350,14 +350,6 @@ window.addEventListener('scroll', function() {
   var section = document.getElementById('scrollSection');
   if (!sv || !section) return;
 
-  if (window.innerWidth <= 768) {
-    sv.setAttribute('autoplay', '');
-    sv.setAttribute('loop', '');
-    sv.play().catch(function(){});
-    return;
-  }
-
-  sv.pause();
   var ticking = false;
   function update() {
     var rect = section.getBoundingClientRect();
@@ -369,10 +361,34 @@ window.addEventListener('scroll', function() {
     }
     ticking = false;
   }
-  window.addEventListener('scroll', function() {
-    if (!ticking) { requestAnimationFrame(update); ticking = true; }
-  }, { passive: true });
-  sv.addEventListener('loadedmetadata', update);
+  function bindScroll() {
+    sv.pause();
+    window.addEventListener('scroll', function() {
+      if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+    update();
+  }
+
+  var src = sv.querySelector('source');
+  var url = src ? src.getAttribute('src') : sv.src;
+  fetch(url).then(function(r) { return r.blob(); }).then(function(blob) {
+    var blobUrl = URL.createObjectURL(blob);
+    sv.src = blobUrl;
+    sv.load();
+    sv.addEventListener('loadedmetadata', function onMeta() {
+      sv.removeEventListener('loadedmetadata', onMeta);
+      var p = sv.play();
+      if (p && p.then) {
+        p.then(function() { sv.pause(); sv.currentTime = 0; bindScroll(); })
+         .catch(function() { bindScroll(); });
+      } else {
+        sv.pause(); bindScroll();
+      }
+    });
+  }).catch(function() {
+    sv.addEventListener('loadedmetadata', function() { bindScroll(); });
+    if (sv.readyState >= 1) bindScroll();
+  });
 })();
 </script>
 </body>

@@ -288,7 +288,7 @@ ul { list-style: none; }
 .hero__top {
   position: relative;
   text-align: center;
-  padding: 55px 40px 0;
+  padding: clamp(100px, 18vh, 200px) 40px 0;
 }
 .hero__subtitle {
   font-family: var(--font-display);
