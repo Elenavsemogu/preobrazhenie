@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Преображение — социальный проект для женщин | Барнаул</title>
+  <meta name="description" content="Бесплатный социальный проект для девушек и женщин. 7-й сезон. Старт 23 марта 2026. Работа с экспертами, мастер-классы, призы на 200 000₽.">
+  <meta property="og:title" content="Преображение — социальный проект для женщин | Барнаул">
+  <meta property="og:description" content="Бесплатный проект для женщин. 2 месяца работы с экспертами. Главный приз — преображение на 200 000₽.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700&family=Raleway:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header" id="top">
+    <div class="container header__inner">
+      <a href="index.html" class="header__logo">
+        <img class="header__logo-icon" src="assets/p-letter-hq.png" alt="П" width="32" height="32">
+        <span>Преображение</span>
+      </a>
+      <nav class="header__nav">
+        <a href="#about" class="header__link">О проекте</a>
+        <a href="participants.html" class="header__link">Участницам</a>
+        <a href="sponsors.html" class="header__link">Спонсорам</a>
+        <a href="#partners" class="header__link">Партнёры</a>
+      </nav>
+      <div class="header__actions">
+        <a href="participants.html#form" class="btn btn--outline btn--sm">Подать заявку</a>
+        <a href="sponsors.html#packages" class="btn btn--primary btn--sm">Стать спонсором</a>
+      </div>
+      <button class="header__burger" id="burger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-menu__nav">
+      <a href="#about" class="mobile-menu__link">О проекте</a>
+      <a href="participants.html" class="mobile-menu__link">Участницам</a>
+      <a href="sponsors.html" class="mobile-menu__link">Спонсорам</a>
+      <a href="#partners" class="mobile-menu__link">Партнёры</a>
+      <a href="participants.html#form" class="btn btn--outline">Подать заявку</a>
+      <a href="sponsors.html#packages" class="btn btn--primary">Стать спонсором</a>
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__bg"></div>
+    <div class="hero__content">
+      <div class="hero__badge">7-й сезон&ensp;&bull;&ensp;Барнаул</div>
+      <div class="hero__video-wrap">
+        <video autoplay muted playsinline loop preload="auto">
+          <source src="assets/hero-bloom-loop.mp4" type="video/mp4">
+        </video>
+      </div>
+      <h1 class="hero__title">Преображение</h1>
+      <p class="hero__subtitle">Социальный проект для&nbsp;девочек, девушек и&nbsp;женщин, которые готовы шагнуть навстречу своей новой яркой жизни</p>
+      <div class="hero__cta">
+        <a href="participants.html#form" class="btn btn--primary btn--lg">Хочу участвовать</a>
+        <a href="sponsors.html" class="btn btn--outline btn--lg">Стать спонсором</a>
+      </div>
+      <div class="hero__stats">
+        <div class="hero__stat">
+          <span class="hero__stat-num">6</span>
+          <span class="hero__stat-label">успешных сезонов</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-num">25</span>
+          <span class="hero__stat-label">экспертов</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-num">200К+</span>
+          <span class="hero__stat-label">приз победительнице</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COUNTDOWN -->
+  <section class="countdown" id="countdown">
+    <div class="container countdown__inner">
+      <p class="countdown__label">До старта проекта</p>
+      <div class="countdown__timer" id="timer">
+        <div class="countdown__item">
+          <span class="countdown__number" id="days">00</span>
+          <span class="countdown__unit">дней</span>
+        </div>
+        <div class="countdown__sep"></div>
+        <div class="countdown__item">
+          <span class="countdown__number" id="hours">00</span>
+          <span class="countdown__unit">часов</span>
+        </div>
+        <div class="countdown__sep"></div>
+        <div class="countdown__item">
+          <span class="countdown__number" id="minutes">00</span>
+          <span class="countdown__unit">минут</span>
+        </div>
+        <div class="countdown__sep"></div>
+        <div class="countdown__item">
+          <span class="countdown__number" id="seconds">00</span>
+          <span class="countdown__unit">секунд</span>
+        </div>
+      </div>
+      <p class="countdown__date">23 марта 2026</p>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="container">
+      <h2 class="section-title">О проекте</h2>
+      <div class="about__grid">
+        <div class="about__card">
+          <div class="about__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <h3>Что это?</h3>
+          <p>Абсолютно новый формат, не похожий на другие. Проект не преображает одну женщину — он одновременно меняет многих.</p>
+        </div>
+        <div class="about__card">
+          <div class="about__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <h3>Как проходит?</h3>
+          <p>В течение 2 месяцев участницы работают с экспертами, получают знания об уходе за собой, личной жизни и карьере. Встречи 2-3 раза в неделю.</p>
+        </div>
+        <div class="about__card">
+          <div class="about__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5C7 4 7 7 7 7"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5C17 4 17 7 17 7"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+          </div>
+          <h3>Главный приз</h3>
+          <p>Победительница получает личную работу с каждым экспертом (преображение стоимостью от 150 000 ₽) и 50 000 ₽ наличными!</p>
+        </div>
+        <div class="about__card">
+          <div class="about__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h3>Бесплатно</h3>
+          <p>Проект для участниц абсолютно бесплатный — это социальный проект. Спонсируют его эксперты-спонсоры.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEDIA -->
+  <section class="media" id="media">
+    <div class="container">
+      <h2 class="section-title">О нас говорят в СМИ</h2>
+      <div class="media__grid">
+        <a href="https://t.me/vestialtai/11935" target="_blank" rel="noopener" class="media__card">
+          <div class="media__preview media__preview--blue">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span class="media__duration">2:48</span>
+          </div>
+          <div class="media__body">
+            <span class="media__source">Вести Алтай</span>
+            <p>Репортаж о проекте «Преображение» в Рубцовске</p>
+          </div>
+        </a>
+        <a href="https://t.me/preobrazhenie_barnaul/50" target="_blank" rel="noopener" class="media__card">
+          <div class="media__preview media__preview--lilac">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
+          <div class="media__body">
+            <span class="media__source">Подкаст «Споры»</span>
+            <p>Интервью о социальном проекте для женщин</p>
+          </div>
+        </a>
+        <a href="https://t.me/juliazamataeva/1154" target="_blank" rel="noopener" class="media__card">
+          <div class="media__preview media__preview--rose">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span class="media__duration">20 мин</span>
+          </div>
+          <div class="media__body">
+            <span class="media__source">Катунь 24</span>
+            <p>20 минут в эфире — первый телевизионный дебют</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCROLL-DRIVEN FLOWER VIDEO -->
+  <section class="scroll-video" id="scrollSection">
+    <div class="scroll-video__sticky">
+      <video id="scrollVideo" muted playsinline preload="auto">
+        <source src="assets/flowers-scroll.mp4" type="video/mp4">
+      </video>
+    </div>
+  </section>
+
+  <!-- CTA DUAL -->
+  <section class="cta-dual">
+    <div class="container">
+      <div class="cta-dual__grid">
+        <a href="participants.html" class="cta-dual__card cta-dual__card--participants">
+          <span class="cta-dual__label">Для участниц</span>
+          <h2>Хочешь преобразиться?</h2>
+          <p>Заполни анкету и стань участницей бесплатного проекта. Главный приз — 200 000 ₽.</p>
+          <span class="cta-dual__link">Подробнее и анкета &rarr;</span>
+        </a>
+        <a href="sponsors.html" class="cta-dual__card cta-dual__card--sponsors">
+          <span class="cta-dual__label">Для экспертов</span>
+          <h2>Стань спонсором</h2>
+          <p>Продвижение бизнеса + доброе дело. 3 формата участия, всего 25 мест.</p>
+          <span class="cta-dual__link">Узнать условия &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERS -->
+  <section class="partners" id="partners">
+    <div class="container">
+      <h2 class="section-title">Партнёры сезона</h2>
+      <div class="partners__grid">
+        <div class="partner">
+          <div class="partner__logo"><img src="assets/partners/stefan.png" alt="Stefan" loading="lazy"></div>
+          <h4>Stefan</h4>
+          <p>Бутики модных аксессуаров</p>
+        </div>
+        <div class="partner">
+          <div class="partner__logo"><img src="assets/partners/jzpmu.png" alt="JZPMU" loading="lazy"></div>
+          <h4>JZPMU</h4>
+          <p>Студия перманентного макияжа Юлии Заматаевой</p>
+        </div>
+        <div class="partner">
+          <div class="partner__logo"><img src="assets/partners/rutz.png" alt="RUTZ" loading="lazy"></div>
+          <h4>RUTZ</h4>
+          <p>Пространство красоты Дарьи Рутц</p>
+        </div>
+        <div class="partner">
+          <div class="partner__logo"><img src="assets/partners/karaoke.png" alt="Караоке шоу" loading="lazy"></div>
+          <h4>Караоке шоу</h4>
+          <p>Организация мероприятий под ключ</p>
+        </div>
+        <div class="partner">
+          <div class="partner__logo"><img src="assets/partners/skiba.jpg" alt="Евгения Скиба" loading="lazy"></div>
+          <h4>Евгения Скиба</h4>
+          <p>Лауреат Национальной премии по этикету</p>
+        </div>
+        <div class="partner">
+          <div class="partner__logo"><img src="assets/partners/sergeeva.jpg" alt="Ксения Сергеева" loading="lazy"></div>
+          <h4>Ксения Сергеева</h4>
+          <p>Женский фотограф и плюс-сайз блогер</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2 class="section-title">Остались вопросы?</h2>
+      <p class="section-desc">Свяжитесь с нами любым удобным способом</p>
+      <div class="contact__links">
+        <a href="https://t.me/JZPMUstudio" target="_blank" class="contact__link">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161l-1.97 9.289c-.146.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.13.833.932z"/></svg>
+          Телеграм
+        </a>
+        <a href="https://wa.me/79826303999" target="_blank" class="contact__link">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.625.846 5.059 2.284 7.03L.254 23.753l4.96-1.3A11.932 11.932 0 0012 24c6.627 0 12-5.373 12-12s-5.373-12-12-12z"/></svg>
+          WhatsApp
+        </a>
+        <a href="https://vk.com/jz_pmu" target="_blank" class="contact__link">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M13.162 18.994c.5 0 .5-.25.5-.5v-.5c-.25-.5 0-1.25.75-1.25s1.25.75 1.75 1.25c.5.5 1 1 1 1h2s1.5 0 .75-1.25c-.25-.5-.5-.75-1-1.25-.5-.5-.75-.75-1-1-.25-.25-.25-.5 0-1s1.25-2 1.5-2.75c.25-.75-.25-.75-.25-.75h-2.25s-.25 0-.5.25-.5.75-.75 1c-.75.75-1.25 1-1.5.75s-.25-.75-.25-1v-1.75c0-.75-.25-1-1-1h-3.25s-.5 0-.75.25c-.25.25 0 .5 0 .5s.75 1 .5 1.5c-.25.5-.75 1.25-.75 1.25s-.25.5-.75.25-1-.75-1.5-1.25c-.25-.5-.5-.75-.75-1s-.25-.5-.5-.5H3.5S3 9.994 3 10.244c0 .25.75 1.75 1.5 2.75s2 2.25 3.75 3.25c1.75 1 2.75.75 2.75.75h1.25c.75 0 .75.5.5 1s-.25.75-.25 1c0 .25.162.494.662.494z"/></svg>
+          ВКонтакте
+        </a>
+        <a href="https://max.ru/u/f9LHodD0cOLAAaqT882mCdaaWPJ9N4AajNcrzfgKehyu_iHxxquaYCgdXhI" target="_blank" class="contact__link">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><text x="12" y="16" text-anchor="middle" font-size="10" fill="currentColor" font-family="sans-serif" font-weight="700">M</text></svg>
+          MAX
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__left">
+        <p class="footer__legal">ИП Заматаева Юлия Витальевна</p>
+        <p class="footer__legal">ИНН 668500699202 &bull; ОГРНИП 324665800015670</p>
+      </div>
+      <div class="footer__right">
+        <p>Сайт создан <a href="https://papina.team" target="_blank" rel="noopener">ПАПИНА</a></p>
+      </div>
+    </div>
+  </footer>
+
+<script>
+(function() {
+  var target = new Date('2026-03-23T10:00:00+07:00').getTime();
+  function update() {
+    var now = Date.now(), diff = Math.max(0, target - now);
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('days').textContent = String(d).padStart(2, '0');
+    document.getElementById('hours').textContent = String(h).padStart(2, '0');
+    document.getElementById('minutes').textContent = String(m).padStart(2, '0');
+    document.getElementById('seconds').textContent = String(s).padStart(2, '0');
+  }
+  update(); setInterval(update, 1000);
+})();
+
+document.getElementById('burger').addEventListener('click', function() {
+  this.classList.toggle('active');
+  document.getElementById('mobileMenu').classList.toggle('open');
+  document.body.classList.toggle('menu-open');
+});
+document.querySelectorAll('.mobile-menu__link, .mobile-menu .btn').forEach(function(el) {
+  el.addEventListener('click', function() {
+    document.getElementById('burger').classList.remove('active');
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.body.classList.remove('menu-open');
+  });
+});
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var t = document.querySelector(this.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({behavior:'smooth', block:'start'}); }
+  });
+});
+window.addEventListener('scroll', function() {
+  document.querySelector('.header').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+(function() {
+  var sv = document.getElementById('scrollVideo');
+  var section = document.getElementById('scrollSection');
+  if (!sv || !section) return;
+  sv.pause();
+  var ticking = false;
+
+  function update() {
+    var rect = section.getBoundingClientRect();
+    var travel = section.offsetHeight - window.innerHeight;
+    var scrolled = -rect.top;
+    var progress = Math.max(0, Math.min(1, scrolled / travel));
+    if (sv.duration && isFinite(sv.duration)) {
+      sv.currentTime = progress * sv.duration;
+    }
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', function() {
+    if (!ticking) { requestAnimationFrame(update); ticking = true; }
+  }, { passive: true });
+  sv.addEventListener('loadedmetadata', update);
+})();
+</script>
+</body>
+</html>

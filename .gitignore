@@ -1,0 +1,17 @@
+*-backup-*.html
+*-backup-*.css
+*-new.html
+*-new.css
+пробалого/
+hero-section-*.png
+.DS_Store
+.playwright-mcp/
+logo.svg
+msg-*.md
+assets/hero-bg.jpg
+assets/flowers-alt.mp4
+assets/flowers.mp4
+assets/flowers-reverse.mp4
+assets/hero-alpha.webm
+assets/hero-bloom-alpha.webm
+assets/hero-bloom.mp4

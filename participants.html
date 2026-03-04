@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Для участниц — Преображение | Барнаул</title>
+  <meta name="description" content="Заполни анкету и стань участницей проекта Преображение. 2 месяца работы с экспертами. Главный приз — 200 000₽.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700&family=Raleway:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header header--light" id="top">
+    <div class="container header__inner">
+      <a href="index.html" class="header__logo">
+        <img class="header__logo-icon" src="assets/p-letter-hq.png" alt="П" width="32" height="32">
+        <span>Преображение</span>
+      </a>
+      <nav class="header__nav">
+        <a href="index.html#about" class="header__link">О проекте</a>
+        <a href="participants.html" class="header__link">Участницам</a>
+        <a href="sponsors.html" class="header__link">Спонсорам</a>
+        <a href="index.html#partners" class="header__link">Партнёры</a>
+      </nav>
+      <div class="header__actions">
+        <a href="#form" class="btn btn--outline btn--sm">Подать заявку</a>
+        <a href="sponsors.html#packages" class="btn btn--primary btn--sm">Стать спонсором</a>
+      </div>
+      <button class="header__burger" id="burger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-menu__nav">
+      <a href="index.html#about" class="mobile-menu__link">О проекте</a>
+      <a href="participants.html" class="mobile-menu__link">Участницам</a>
+      <a href="sponsors.html" class="mobile-menu__link">Спонсорам</a>
+      <a href="index.html#partners" class="mobile-menu__link">Партнёры</a>
+      <a href="#form" class="btn btn--outline">Подать заявку</a>
+      <a href="sponsors.html#packages" class="btn btn--primary">Стать спонсором</a>
+    </nav>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <h1>Для участниц</h1>
+    <p>Каждая участница выходит из проекта победительницей! Но есть возможность стать главной — её выберут голосованием.</p>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="steps-section">
+    <div class="container">
+      <h2>Как это работает</h2>
+      <div class="steps__grid">
+        <div class="step">
+          <div class="step__num">1</div>
+          <h4>Заполни анкету</h4>
+          <p>Расскажи о себе, своих целях и готовности к переменам</p>
+        </div>
+        <div class="step">
+          <div class="step__num">2</div>
+          <h4>Стань участницей</h4>
+          <p>Мы отберём участниц и пригласим тебя на старт проекта</p>
+        </div>
+        <div class="step">
+          <div class="step__num">3</div>
+          <h4>Работай с экспертами</h4>
+          <p>2-3 встречи в неделю после 18:00, мастер-классы и домашние задания</p>
+        </div>
+        <div class="step">
+          <div class="step__num">4</div>
+          <h4>Преобразись!</h4>
+          <p>За 5-7 недель ты изменишься — внешне, внутренне и профессионально</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIZE -->
+  <section class="prize-section">
+    <div class="container">
+      <div class="prize-card">
+        <h3>Главный приз</h3>
+        <div class="prize-amount">200 000+ ₽</div>
+        <p>Победительница получает личную работу с каждым экспертом проекта — полное преображение стоимостью от 150 000 ₽, а также <strong>50 000 ₽ наличными</strong>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section class="form-section" id="form">
+    <div class="container">
+      <h2 class="section-title">Анкета участницы</h2>
+      <p class="section-desc">Заполни анкету максимально откровенно и подробно. Организаторы не передают твои данные третьим лицам.</p>
+      <form class="form" id="applicationForm">
+        <div class="form__group">
+          <label for="fio">ФИО <span class="req">*</span></label>
+          <input type="text" id="fio" name="fio" required placeholder="Иванова Мария Александровна">
+        </div>
+        <div class="form__row">
+          <div class="form__group">
+            <label for="birthdate">Дата рождения <span class="req">*</span></label>
+            <input type="date" id="birthdate" name="birthdate" required>
+          </div>
+          <div class="form__group">
+            <label for="contacts">Контакты (телефон, соц сети) <span class="req">*</span></label>
+            <input type="text" id="contacts" name="contacts" required placeholder="+7 999 123-45-67, @instagram">
+          </div>
+        </div>
+        <div class="form__row">
+          <div class="form__group">
+            <label for="occupation">Чем занимаешься, кем работаешь? <span class="req">*</span></label>
+            <input type="text" id="occupation" name="occupation" required placeholder="Бухгалтер, мама двоих детей">
+          </div>
+          <div class="form__group">
+            <label for="family">Семейное положение <span class="req">*</span></label>
+            <input type="text" id="family" name="family" required placeholder="Замужем / не замужем">
+          </div>
+        </div>
+        <div class="form__group">
+          <label for="children">Есть ли дети? Если есть — укажи их возраст <span class="req">*</span></label>
+          <input type="text" id="children" name="children" required placeholder="Да, дочь 5 лет и сын 8 лет">
+        </div>
+        <div class="form__group">
+          <label for="goal">Какова твоя личная цель участия? Какую проблему хочешь решить? <span class="req">*</span></label>
+          <textarea id="goal" name="goal" rows="3" required placeholder="Хочу больше уверенности в себе, научиться ухаживать за собой..."></textarea>
+        </div>
+        <div class="form__group">
+          <label for="schedule">Сможешь ли посещать все встречи? (2-3 раза в неделю, будни после 18:00, 5-7 недель) <span class="req">*</span></label>
+          <input type="text" id="schedule" name="schedule" required placeholder="Да, смогу / Не всегда, потому что...">
+        </div>
+        <div class="form__group">
+          <label for="socials">Ведёшь ли соц сети? Укажи ссылки <span class="req">*</span></label>
+          <input type="text" id="socials" name="socials" required placeholder="instagram.com/myname, vk.com/myname">
+        </div>
+        <div class="form__group">
+          <label for="consent_masters">Если станешь победительницей — согласна ли, что мастера сами решают, как делать преображение? <span class="req">*</span></label>
+          <select id="consent_masters" name="consent_masters" required>
+            <option value="" disabled selected>Выбери ответ</option>
+            <option value="yes">Да, согласна</option>
+            <option value="partial">Частично — хочу обсуждать</option>
+            <option value="no">Нет, хочу решать сама</option>
+          </select>
+        </div>
+        <div class="form__group">
+          <label for="consent_schedule">В случае победы сможешь подстроиться под расписание мастеров? <span class="req">*</span></label>
+          <select id="consent_schedule" name="consent_schedule" required>
+            <option value="" disabled selected>Выбери ответ</option>
+            <option value="yes">Да</option>
+            <option value="partial">Скорее да, но не всегда</option>
+            <option value="no">Нет</option>
+          </select>
+        </div>
+        <div class="form__group">
+          <label for="opposition">Есть ли кто-то, кто может быть против твоего участия и кардинальных изменений? <span class="req">*</span></label>
+          <textarea id="opposition" name="opposition" rows="2" required placeholder="Нет / Муж может быть против, но я готова..."></textarea>
+        </div>
+        <div class="form__group">
+          <label for="photo_consent">Не против фото/видео съёмки для публикации в соц сетях проекта? <span class="req">*</span></label>
+          <select id="photo_consent" name="photo_consent" required>
+            <option value="" disabled selected>Выбери ответ</option>
+            <option value="yes">Да, не против</option>
+            <option value="no">Нет, не хочу</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn--primary btn--lg btn--full">Отправить анкету</button>
+        <p class="form__note">Нажимая кнопку, ты даёшь согласие на обработку данных организаторами проекта.</p>
+      </form>
+      <div class="form__success" id="formSuccess" style="display:none;">
+        <div class="form__success-icon">&#10004;</div>
+        <h3>Анкета отправлена!</h3>
+        <p>Мы свяжемся с тобой в ближайшее время. Следи за обновлениями в наших соц сетях!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__left">
+        <p class="footer__legal">ИП Заматаева Юлия Витальевна</p>
+        <p class="footer__legal">ИНН 668500699202 &bull; ОГРНИП 324665800015670</p>
+      </div>
+      <div class="footer__right">
+        <p>Сайт создан <a href="https://papina.team" target="_blank" rel="noopener">ПАПИНА</a></p>
+      </div>
+    </div>
+  </footer>
+
+<script>
+document.getElementById('burger').addEventListener('click', function() {
+  this.classList.toggle('active');
+  document.getElementById('mobileMenu').classList.toggle('open');
+  document.body.classList.toggle('menu-open');
+});
+document.querySelectorAll('.mobile-menu__link, .mobile-menu .btn').forEach(function(el) {
+  el.addEventListener('click', function() {
+    document.getElementById('burger').classList.remove('active');
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.body.classList.remove('menu-open');
+  });
+});
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var t = document.querySelector(this.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({behavior:'smooth', block:'start'}); }
+  });
+});
+window.addEventListener('scroll', function() {
+  document.querySelector('.header').classList.toggle('scrolled', window.scrollY > 40);
+});
+document.getElementById('applicationForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  this.style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+});
+</script>
+</body>
+</html>
