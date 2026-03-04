@@ -288,7 +288,10 @@ ul { list-style: none; }
 .hero__top {
   position: relative;
   text-align: center;
-  padding: clamp(100px, 18vh, 200px) 40px 0;
+  padding: 55px 40px 0;
+}
+@media (min-width: 769px) {
+  .hero__top { padding-top: clamp(100px, 18vh, 200px); }
 }
 .hero__subtitle {
   font-family: var(--font-display);
@@ -538,8 +541,9 @@ ul { list-style: none; }
   display: block;
 }
 @media (max-width: 768px) {
-  .scroll-video { height: 150vh; }
-  .scroll-video__sticky { height: 50vh; }
+  .scroll-video { height: 300vh; }
+  .scroll-video__sticky { height: 100vh; }
+  .scroll-video__sticky video { object-fit: contain; }
 }
 
 /* === CTA DUAL === */
