@@ -349,9 +349,16 @@ window.addEventListener('scroll', function() {
   var sv = document.getElementById('scrollVideo');
   var section = document.getElementById('scrollSection');
   if (!sv || !section) return;
+
+  if (window.innerWidth <= 768) {
+    sv.setAttribute('autoplay', '');
+    sv.setAttribute('loop', '');
+    sv.play().catch(function(){});
+    return;
+  }
+
   sv.pause();
   var ticking = false;
-
   function update() {
     var rect = section.getBoundingClientRect();
     var travel = section.offsetHeight - window.innerHeight;
@@ -362,7 +369,6 @@ window.addEventListener('scroll', function() {
     }
     ticking = false;
   }
-
   window.addEventListener('scroll', function() {
     if (!ticking) { requestAnimationFrame(update); ticking = true; }
   }, { passive: true });
