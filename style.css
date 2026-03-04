@@ -541,9 +541,8 @@ ul { list-style: none; }
   display: block;
 }
 @media (max-width: 768px) {
-  .scroll-video { height: 300vh; }
-  .scroll-video__sticky { height: 100vh; }
-  .scroll-video__sticky video { object-fit: contain; }
+  .scroll-video { height: 250vh; }
+  .scroll-video__sticky { height: 70vh; }
 }
 
 /* === CTA DUAL === */
