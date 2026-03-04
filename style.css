@@ -638,20 +638,22 @@ ul { list-style: none; }
 .partner p { font-size: 14px; color: var(--gray-600); }
 
 /* === CONTACT === */
-.contact { padding: 48px 0; background: var(--gray-50); text-align: center; }
+.contact { padding: 48px 0; background: var(--lilac); text-align: center; }
+.contact .section-title { color: var(--white); }
+.contact .section-desc { color: rgba(255,255,255,.8); }
 .contact__links { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
 .contact__link {
   display: flex; align-items: center; gap: 10px;
   padding: 14px 24px;
-  background: var(--white);
-  border: 1px solid var(--gray-200);
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.35);
   border-radius: 50px;
   font-weight: 600; font-size: 15px;
-  color: var(--gray-800);
+  color: var(--white);
   transition: var(--transition);
 }
-.contact__link:hover { border-color: var(--lilac); color: var(--lilac); box-shadow: var(--shadow-sm); }
-.contact__link svg { width: 20px; height: 20px; color: var(--lilac); }
+.contact__link:hover { background: var(--white); color: var(--lilac); box-shadow: var(--shadow-sm); }
+.contact__link svg { width: 20px; height: 20px; color: currentColor; }
 
 /* === FOOTER === */
 .footer { padding: 32px 0; border-top: 1px solid var(--gray-200); }
