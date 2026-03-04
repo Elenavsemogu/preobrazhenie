@@ -52,33 +52,38 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero__bg"></div>
+    <video class="hero__video hero__video--desktop" autoplay muted loop playsinline preload="auto">
+      <source src="assets/hero-video.mp4" type="video/mp4">
+    </video>
+    <video class="hero__video--mobile" autoplay muted playsinline preload="auto" id="heroMobileVideo">
+      <source src="assets/hero-mobile-final.mp4" type="video/mp4">
+    </video>
+    <div class="hero__overlay"></div>
+    <div class="hero__top">
+      <p class="hero__subtitle">Социальный проект для&nbsp;девочек, девушек и&nbsp;женщин</p>
+    </div>
     <div class="hero__content">
-      <div class="hero__badge">7-й сезон&ensp;&bull;&ensp;Барнаул</div>
-      <div class="hero__video-wrap">
-        <video autoplay muted playsinline loop preload="auto">
-          <source src="assets/hero-bloom-loop.mp4" type="video/mp4">
-        </video>
-      </div>
-      <h1 class="hero__title">Преображение</h1>
-      <p class="hero__subtitle">Социальный проект для&nbsp;девочек, девушек и&nbsp;женщин, которые готовы шагнуть навстречу своей новой яркой жизни</p>
       <div class="hero__cta">
         <a href="participants.html#form" class="btn btn--primary btn--lg">Хочу участвовать</a>
-        <a href="sponsors.html" class="btn btn--outline btn--lg">Стать спонсором</a>
+        <a href="sponsors.html" class="btn btn--outline-light btn--lg">Стать спонсором</a>
       </div>
-      <div class="hero__stats">
-        <div class="hero__stat">
-          <span class="hero__stat-num">6</span>
-          <span class="hero__stat-label">успешных сезонов</span>
-        </div>
-        <div class="hero__stat">
-          <span class="hero__stat-num">25</span>
-          <span class="hero__stat-label">экспертов</span>
-        </div>
-        <div class="hero__stat">
-          <span class="hero__stat-num">200К+</span>
-          <span class="hero__stat-label">приз победительнице</span>
-        </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <section class="stats-bar">
+    <div class="stats-bar__inner">
+      <div class="stats-bar__item">
+        <span class="stats-bar__num">6</span>
+        <span class="stats-bar__label">сезонов</span>
+      </div>
+      <div class="stats-bar__item">
+        <span class="stats-bar__num">25</span>
+        <span class="stats-bar__label">экспертов</span>
+      </div>
+      <div class="stats-bar__item">
+        <span class="stats-bar__num">200К+</span>
+        <span class="stats-bar__label">приз</span>
       </div>
     </div>
   </section>
@@ -309,6 +314,13 @@
     document.getElementById('seconds').textContent = String(s).padStart(2, '0');
   }
   update(); setInterval(update, 1000);
+})();
+
+(function() {
+  var mv = document.getElementById('heroMobileVideo');
+  if (mv) mv.addEventListener('ended', function() {
+    this.pause();
+  });
 })();
 
 document.getElementById('burger').addEventListener('click', function() {
