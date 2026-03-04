@@ -275,7 +275,7 @@ ul { list-style: none; }
     backdrop-filter: none;
   }
   .header__logo { color: var(--gray-800); }
-  .header__logo-icon { filter: contrast(1.6) saturate(2) brightness(0.8); }
+  .header__logo-icon { filter: none; }
   .header__burger span { background: var(--gray-800); }
 }
 .hero__overlay {
