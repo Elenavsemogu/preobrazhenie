@@ -745,10 +745,11 @@ ul { list-style: none; }
   max-width: 480px;
   padding: 0 24px;
 }
-.page-hero--peony h1 { color: var(--white); text-shadow: 0 2px 16px rgba(0,0,0,.3); }
-.page-hero--peony p { color: rgba(255,255,255,.85); text-shadow: 0 1px 8px rgba(0,0,0,.2); }
+.page-hero--peony h1 { color: var(--gray-900); }
+.page-hero--peony p { color: var(--gray-600); }
 @media (max-width: 768px) {
   .page-hero--peony { height: 200vh; }
+  .page-hero__bg { object-fit: contain; }
   .page-hero__text { max-width: 300px; }
 }
 

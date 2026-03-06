@@ -227,7 +227,7 @@ window.addEventListener('scroll', function() {
   var sv = document.getElementById('peonyBg');
   var section = document.getElementById('peonySection');
   if (!sv || !section) return;
-  var currentT = 0, targetT = 0, animating = false;
+  var currentT = 0, targetT = 0, animating = false, scrollMode = false;
 
   function animate() {
     currentT += (targetT - currentT) * 0.08;
@@ -243,6 +243,7 @@ window.addEventListener('scroll', function() {
     if (!animating) { animating = true; requestAnimationFrame(animate); }
   }
   function bindScroll() {
+    scrollMode = true;
     sv.pause();
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
@@ -255,9 +256,21 @@ window.addEventListener('scroll', function() {
     sv.load();
     sv.addEventListener('loadedmetadata', function onM() {
       sv.removeEventListener('loadedmetadata', onM);
-      var p = sv.play();
-      if (p && p.then) p.then(function() { sv.pause(); bindScroll(); }).catch(function() { bindScroll(); });
-      else { sv.pause(); bindScroll(); }
+      sv.play().then(function() {
+        sv.addEventListener('timeupdate', function onEnd() {
+          if (sv.currentTime >= sv.duration * 0.5 || scrollMode) {
+            sv.removeEventListener('timeupdate', onEnd);
+            if (!scrollMode) bindScroll();
+          }
+        });
+        window.addEventListener('scroll', function once() {
+          window.removeEventListener('scroll', once);
+          if (!scrollMode) {
+            currentT = sv.currentTime / sv.duration;
+            bindScroll();
+          }
+        }, { passive: true });
+      }).catch(function() { bindScroll(); });
     });
   }).catch(function() {
     sv.addEventListener('loadedmetadata', function() { bindScroll(); });
