@@ -732,14 +732,12 @@ ul { list-style: none; }
   justify-content: center;
   overflow: hidden;
 }
-.page-hero__vid {
+.page-hero__bg {
   position: absolute;
-  bottom: 0;
-  height: 80%;
-  width: auto;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
 }
-.page-hero__vid--left { left: 0; }
-.page-hero__vid--right { right: 0; transform: scaleX(-1); }
 .page-hero__text {
   position: relative;
   z-index: 2;
@@ -747,13 +745,11 @@ ul { list-style: none; }
   max-width: 480px;
   padding: 0 24px;
 }
-.page-hero--peony h1 { color: var(--gray-900); }
-.page-hero--peony p { color: var(--gray-600); }
+.page-hero--peony h1 { color: var(--white); text-shadow: 0 2px 16px rgba(0,0,0,.3); }
+.page-hero--peony p { color: rgba(255,255,255,.85); text-shadow: 0 1px 8px rgba(0,0,0,.2); }
 @media (max-width: 768px) {
-  .page-hero--peony { height: 150vh; }
-  .page-hero__sticky { height: 80vh; }
-  .page-hero__vid { height: 45%; }
-  .page-hero__text { max-width: 280px; }
+  .page-hero--peony { height: 200vh; }
+  .page-hero__text { max-width: 300px; }
 }
 
 /* === PARTICIPANTS PAGE === */

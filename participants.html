@@ -50,13 +50,8 @@
   <!-- PAGE HERO -->
   <section class="page-hero page-hero--peony" id="peonySection">
     <div class="page-hero__sticky">
-      <video class="page-hero__vid page-hero__vid--left" id="peonyLeft" muted playsinline preload="auto">
-        <source src="assets/peony-transparent.webm" type="video/webm">
-        <source src="assets/peony-vertical.mp4" type="video/mp4">
-      </video>
-      <video class="page-hero__vid page-hero__vid--right" id="peonyRight" muted playsinline preload="auto">
-        <source src="assets/peony-transparent.webm" type="video/webm">
-        <source src="assets/peony-vertical.mp4" type="video/mp4">
+      <video class="page-hero__bg" id="peonyBg" muted playsinline preload="auto">
+        <source src="assets/peony2.mp4" type="video/mp4">
       </video>
       <div class="page-hero__text">
         <h1>Для участниц</h1>
@@ -229,64 +224,44 @@ window.addEventListener('scroll', function() {
 });
 
 (function() {
-  var vR = document.getElementById('peonyRight');
-  var vL = document.getElementById('peonyLeft');
+  var sv = document.getElementById('peonyBg');
   var section = document.getElementById('peonySection');
-  if (!vR || !vL || !section) return;
-  var videos = [vR, vL];
-  var currentT = 0;
-  var targetT = 0;
-  var animating = false;
-
-  function lerp(a, b, t) { return a + (b - a) * t; }
+  if (!sv || !section) return;
+  var currentT = 0, targetT = 0, animating = false;
 
   function animate() {
-    currentT = lerp(currentT, targetT, 0.08);
+    currentT += (targetT - currentT) * 0.08;
     if (Math.abs(currentT - targetT) < 0.001) currentT = targetT;
-    videos.forEach(function(v) {
-      if (v.duration && isFinite(v.duration)) v.currentTime = currentT * v.duration;
-    });
-    if (Math.abs(currentT - targetT) > 0.001) {
-      requestAnimationFrame(animate);
-    } else {
-      animating = false;
-    }
+    if (sv.duration && isFinite(sv.duration)) sv.currentTime = currentT * sv.duration;
+    if (Math.abs(currentT - targetT) > 0.001) requestAnimationFrame(animate);
+    else animating = false;
   }
-
   function onScroll() {
     var rect = section.getBoundingClientRect();
     var travel = section.offsetHeight - window.innerHeight;
-    var scrolled = -rect.top;
-    targetT = Math.max(0, Math.min(1, scrolled / travel));
+    targetT = Math.max(0, Math.min(1, -rect.top / travel));
     if (!animating) { animating = true; requestAnimationFrame(animate); }
   }
-
   function bindScroll() {
-    videos.forEach(function(v) { v.pause(); });
+    sv.pause();
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
   }
 
-  var loaded = 0;
-  videos.forEach(function(v) {
-    var src = v.querySelector('source');
-    var url = src ? src.getAttribute('src') : v.src;
-    fetch(url).then(function(r) { return r.blob(); }).then(function(blob) {
-      v.src = URL.createObjectURL(blob);
-      v.load();
-      v.addEventListener('loadedmetadata', function onM() {
-        v.removeEventListener('loadedmetadata', onM);
-        loaded++;
-        if (loaded >= 2) {
-          videos.forEach(function(vid) {
-            var p = vid.play();
-            if (p && p.then) p.then(function() { vid.pause(); }).catch(function(){});
-            else vid.pause();
-          });
-          setTimeout(bindScroll, 100);
-        }
-      });
-    }).catch(function() { loaded++; if (loaded >= 2) bindScroll(); });
+  var src = sv.querySelector('source');
+  var url = src ? src.getAttribute('src') : sv.src;
+  fetch(url).then(function(r) { return r.blob(); }).then(function(blob) {
+    sv.src = URL.createObjectURL(blob);
+    sv.load();
+    sv.addEventListener('loadedmetadata', function onM() {
+      sv.removeEventListener('loadedmetadata', onM);
+      var p = sv.play();
+      if (p && p.then) p.then(function() { sv.pause(); bindScroll(); }).catch(function() { bindScroll(); });
+      else { sv.pause(); bindScroll(); }
+    });
+  }).catch(function() {
+    sv.addEventListener('loadedmetadata', function() { bindScroll(); });
+    if (sv.readyState >= 1) bindScroll();
   });
 })();
 
