@@ -559,8 +559,8 @@ ul { list-style: none; }
   z-index: 2;
 }
 @media (max-width: 768px) {
-  .scroll-video { height: 250vh; }
-  .scroll-video__sticky { height: 70vh; }
+  .scroll-video { height: 300vh; }
+  .scroll-video__sticky { height: 100vh; }
   .scroll-video__cards { bottom: 16px; }
 }
 
