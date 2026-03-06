@@ -728,7 +728,8 @@ ul { list-style: none; }
   top: 0;
   height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  padding-top: clamp(100px, 14vh, 160px);
   justify-content: center;
   overflow: hidden;
 }
