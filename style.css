@@ -738,6 +738,11 @@ ul { list-style: none; }
   width: 100%; height: 100%;
   object-fit: cover;
 }
+.page-hero__bg--mobile { display: none; }
+@media (max-width: 768px) {
+  .page-hero__bg--desktop { display: none; }
+  .page-hero__bg--mobile { display: block; }
+}
 .page-hero__text {
   position: relative;
   z-index: 2;
@@ -749,7 +754,6 @@ ul { list-style: none; }
 .page-hero--peony p { color: var(--gray-600); }
 @media (max-width: 768px) {
   .page-hero--peony { height: 200vh; }
-  .page-hero__bg { object-fit: contain; }
   .page-hero__text { max-width: 300px; }
 }
 
