@@ -48,9 +48,19 @@
   </div>
 
   <!-- PAGE HERO -->
-  <section class="page-hero">
-    <h1>Для участниц</h1>
-    <p>Каждая участница выходит из проекта победительницей! Но есть возможность стать главной — её выберут голосованием.</p>
+  <section class="page-hero page-hero--peony" id="peonySection">
+    <div class="page-hero__sticky">
+      <video class="page-hero__vid page-hero__vid--right" id="peonyRight" muted playsinline preload="auto">
+        <source src="assets/peony-vertical.mp4" type="video/mp4">
+      </video>
+      <video class="page-hero__vid page-hero__vid--left" id="peonyLeft" muted playsinline preload="auto">
+        <source src="assets/peony-vertical.mp4" type="video/mp4">
+      </video>
+      <div class="page-hero__text">
+        <h1>Для участниц</h1>
+        <p>Каждая участница выходит из проекта победительницей! Но есть возможность стать главной — её выберут голосованием.</p>
+      </div>
+    </div>
   </section>
 
   <!-- HOW IT WORKS -->
@@ -215,6 +225,54 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
 window.addEventListener('scroll', function() {
   document.querySelector('.header').classList.toggle('scrolled', window.scrollY > 40);
 });
+
+(function() {
+  var vR = document.getElementById('peonyRight');
+  var vL = document.getElementById('peonyLeft');
+  var section = document.getElementById('peonySection');
+  if (!vR || !vL || !section) return;
+  var videos = [vR, vL];
+  var ticking = false;
+  function update() {
+    var rect = section.getBoundingClientRect();
+    var travel = section.offsetHeight - window.innerHeight;
+    var scrolled = -rect.top;
+    var progress = Math.max(0, Math.min(1, scrolled / travel));
+    videos.forEach(function(v) {
+      if (v.duration && isFinite(v.duration)) v.currentTime = progress * v.duration;
+    });
+    ticking = false;
+  }
+  function bindScroll() {
+    videos.forEach(function(v) { v.pause(); });
+    window.addEventListener('scroll', function() {
+      if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+    update();
+  }
+  var loaded = 0;
+  videos.forEach(function(v) {
+    var src = v.querySelector('source');
+    var url = src ? src.getAttribute('src') : v.src;
+    fetch(url).then(function(r) { return r.blob(); }).then(function(blob) {
+      v.src = URL.createObjectURL(blob);
+      v.load();
+      v.addEventListener('loadedmetadata', function onM() {
+        v.removeEventListener('loadedmetadata', onM);
+        loaded++;
+        if (loaded >= 2) {
+          var p = vR.play();
+          if (p && p.then) p.then(function() { vR.pause(); vL.play().then(function(){ vL.pause(); bindScroll(); }).catch(function(){ bindScroll(); }); }).catch(function(){ bindScroll(); });
+          else bindScroll();
+        }
+      });
+    }).catch(function() {
+      loaded++;
+      if (loaded >= 2) bindScroll();
+    });
+  });
+})();
+
 document.getElementById('applicationForm').addEventListener('submit', function(e) {
   e.preventDefault();
   var form = this;

@@ -706,6 +706,45 @@ ul { list-style: none; }
   margin: 0 auto;
 }
 
+/* peony hero variant */
+.page-hero--peony {
+  padding: 0;
+  height: 200vh;
+  border-bottom: none;
+  background: #f7f4fa;
+}
+.page-hero__sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.page-hero__vid {
+  position: absolute;
+  bottom: 0;
+  height: 85%;
+  width: auto;
+}
+.page-hero__vid--right { right: 0; }
+.page-hero__vid--left { left: 0; transform: scaleX(-1); }
+.page-hero__text {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 480px;
+  padding: 0 24px;
+}
+.page-hero--peony h1 { color: var(--gray-900); }
+.page-hero--peony p { color: var(--gray-600); }
+@media (max-width: 768px) {
+  .page-hero--peony { height: 180vh; }
+  .page-hero__vid { height: 60%; opacity: .7; }
+  .page-hero__text { max-width: 300px; }
+}
+
 /* === PARTICIPANTS PAGE === */
 .steps-section { padding: 80px 0; }
 .steps-section h2 {
