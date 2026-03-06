@@ -51,11 +51,11 @@
   <section class="page-hero page-hero--peony" id="peonySection">
     <div class="page-hero__sticky">
       <video class="page-hero__vid page-hero__vid--left" id="peonyLeft" muted playsinline preload="auto">
-        <source src="assets/peony-alpha.webm" type="video/webm">
+        <source src="assets/peony-transparent.webm" type="video/webm">
         <source src="assets/peony-vertical.mp4" type="video/mp4">
       </video>
       <video class="page-hero__vid page-hero__vid--right" id="peonyRight" muted playsinline preload="auto">
-        <source src="assets/peony-alpha.webm" type="video/webm">
+        <source src="assets/peony-transparent.webm" type="video/webm">
         <source src="assets/peony-vertical.mp4" type="video/mp4">
       </video>
       <div class="page-hero__text">
@@ -234,24 +234,39 @@ window.addEventListener('scroll', function() {
   var section = document.getElementById('peonySection');
   if (!vR || !vL || !section) return;
   var videos = [vR, vL];
-  var ticking = false;
-  function update() {
+  var currentT = 0;
+  var targetT = 0;
+  var animating = false;
+
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  function animate() {
+    currentT = lerp(currentT, targetT, 0.08);
+    if (Math.abs(currentT - targetT) < 0.001) currentT = targetT;
+    videos.forEach(function(v) {
+      if (v.duration && isFinite(v.duration)) v.currentTime = currentT * v.duration;
+    });
+    if (Math.abs(currentT - targetT) > 0.001) {
+      requestAnimationFrame(animate);
+    } else {
+      animating = false;
+    }
+  }
+
+  function onScroll() {
     var rect = section.getBoundingClientRect();
     var travel = section.offsetHeight - window.innerHeight;
     var scrolled = -rect.top;
-    var progress = Math.max(0, Math.min(1, scrolled / travel));
-    videos.forEach(function(v) {
-      if (v.duration && isFinite(v.duration)) v.currentTime = progress * v.duration;
-    });
-    ticking = false;
+    targetT = Math.max(0, Math.min(1, scrolled / travel));
+    if (!animating) { animating = true; requestAnimationFrame(animate); }
   }
+
   function bindScroll() {
     videos.forEach(function(v) { v.pause(); });
-    window.addEventListener('scroll', function() {
-      if (!ticking) { requestAnimationFrame(update); ticking = true; }
-    }, { passive: true });
-    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
   }
+
   var loaded = 0;
   videos.forEach(function(v) {
     var src = v.querySelector('source');
@@ -263,15 +278,15 @@ window.addEventListener('scroll', function() {
         v.removeEventListener('loadedmetadata', onM);
         loaded++;
         if (loaded >= 2) {
-          var p = vR.play();
-          if (p && p.then) p.then(function() { vR.pause(); vL.play().then(function(){ vL.pause(); bindScroll(); }).catch(function(){ bindScroll(); }); }).catch(function(){ bindScroll(); });
-          else bindScroll();
+          videos.forEach(function(vid) {
+            var p = vid.play();
+            if (p && p.then) p.then(function() { vid.pause(); }).catch(function(){});
+            else vid.pause();
+          });
+          setTimeout(bindScroll, 100);
         }
       });
-    }).catch(function() {
-      loaded++;
-      if (loaded >= 2) bindScroll();
-    });
+    }).catch(function() { loaded++; if (loaded >= 2) bindScroll(); });
   });
 })();
 

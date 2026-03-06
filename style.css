@@ -725,9 +725,8 @@ ul { list-style: none; }
 .page-hero__vid {
   position: absolute;
   bottom: 0;
-  height: 85%;
+  height: 80%;
   width: auto;
-  mix-blend-mode: multiply;
 }
 .page-hero__vid--left { left: 0; }
 .page-hero__vid--right { right: 0; transform: scaleX(-1); }
@@ -741,9 +740,10 @@ ul { list-style: none; }
 .page-hero--peony h1 { color: var(--gray-900); }
 .page-hero--peony p { color: var(--gray-600); }
 @media (max-width: 768px) {
-  .page-hero--peony { height: 180vh; }
-  .page-hero__vid { height: 60%; opacity: .7; }
-  .page-hero__text { max-width: 300px; }
+  .page-hero--peony { height: 150vh; }
+  .page-hero__sticky { height: 80vh; }
+  .page-hero__vid { height: 45%; }
+  .page-hero__text { max-width: 280px; }
 }
 
 /* === PARTICIPANTS PAGE === */
