@@ -313,9 +313,18 @@
 })();
 
 (function() {
+  var TRIM = 0.4;
+  var dv = document.querySelector('.hero__video--desktop');
+  if (dv) dv.addEventListener('timeupdate', function() {
+    if (this.duration && this.currentTime >= this.duration - TRIM) {
+      this.currentTime = 0;
+    }
+  });
   var mv = document.getElementById('heroMobileVideo');
-  if (mv) mv.addEventListener('ended', function() {
-    this.pause();
+  if (mv) mv.addEventListener('timeupdate', function() {
+    if (this.duration && this.currentTime >= this.duration - TRIM) {
+      this.pause();
+    }
   });
 })();
 
