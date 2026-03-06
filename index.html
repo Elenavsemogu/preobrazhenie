@@ -313,17 +313,30 @@
 })();
 
 (function() {
-  var TRIM = 0.4;
+  var TRIM = 0.3;
+  var EASE = 1.2;
   var dv = document.querySelector('.hero__video--desktop');
   if (dv) dv.addEventListener('timeupdate', function() {
     if (this.duration && this.currentTime >= this.duration - TRIM) {
       this.currentTime = 0;
+      this.playbackRate = 1;
     }
   });
   var mv = document.getElementById('heroMobileVideo');
-  if (mv) mv.addEventListener('timeupdate', function() {
-    if (this.duration && this.currentTime >= this.duration - TRIM) {
-      this.pause();
+  if (!mv) return;
+  var easing = false;
+  mv.addEventListener('timeupdate', function() {
+    if (!this.duration) return;
+    var left = this.duration - this.currentTime;
+    if (left <= EASE && !easing) {
+      easing = true;
+      (function slow() {
+        if (mv.paused) return;
+        var t = mv.duration - mv.currentTime;
+        if (t <= TRIM) { mv.pause(); mv.playbackRate = 1; return; }
+        mv.playbackRate = Math.max(0.07, t / EASE);
+        requestAnimationFrame(slow);
+      })();
     }
   });
 })();
