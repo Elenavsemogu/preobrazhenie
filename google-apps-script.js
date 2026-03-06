@@ -2,6 +2,11 @@
 // После вставки: Развернуть → Новое развертывание → Веб-приложение
 // Выполнять от: Меня | Доступ: Все
 
+function doGet() {
+  return ContentService.createTextOutput('Форма Преображение работает ✓')
+    .setMimeType(ContentService.MimeType.TEXT);
+}
+
 function doPost(e) {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   var data = JSON.parse(e.postData.contents);
