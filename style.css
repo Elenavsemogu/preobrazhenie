@@ -552,16 +552,15 @@ ul { list-style: none; }
 }
 .scroll-video__cards {
   position: absolute;
-  bottom: 40px;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   width: 100%;
   z-index: 2;
 }
 @media (max-width: 768px) {
   .scroll-video { height: 300vh; }
   .scroll-video__sticky { height: 100vh; }
-  .scroll-video__cards { bottom: 16px; }
 }
 
 /* === CTA DUAL === */
