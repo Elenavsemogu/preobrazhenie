@@ -217,8 +217,35 @@ window.addEventListener('scroll', function() {
 });
 document.getElementById('applicationForm').addEventListener('submit', function(e) {
   e.preventDefault();
-  this.style.display = 'none';
-  document.getElementById('formSuccess').style.display = 'block';
+  var form = this;
+  var btn = form.querySelector('button[type="submit"]');
+  var origText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'Отправляем...';
+
+  var data = {};
+  new FormData(form).forEach(function(v, k) { data[k] = v; });
+  data.timestamp = new Date().toLocaleString('ru-RU');
+
+  var SHEET_URL = form.dataset.sheetUrl;
+  if (!SHEET_URL) {
+    form.style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+    return;
+  }
+  fetch(SHEET_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  }).then(function() {
+    form.style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }).catch(function() {
+    alert('Ошибка отправки. Попробуйте ещё раз.');
+    btn.disabled = false;
+    btn.textContent = origText;
+  });
 });
 </script>
 </body>
