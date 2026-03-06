@@ -727,9 +727,10 @@ ul { list-style: none; }
   bottom: 0;
   height: 85%;
   width: auto;
+  mix-blend-mode: multiply;
 }
-.page-hero__vid--right { right: 0; }
-.page-hero__vid--left { left: 0; transform: scaleX(-1); }
+.page-hero__vid--left { left: 0; }
+.page-hero__vid--right { right: 0; transform: scaleX(-1); }
 .page-hero__text {
   position: relative;
   z-index: 2;
