@@ -557,15 +557,17 @@ window.addEventListener('scroll', function() {
   stage.addEventListener('mouseenter', function() { clearInterval(timer); });
   stage.addEventListener('mouseleave', startTimer);
 
-  var tx = 0;
+  var tx = 0, ty = 0;
   stage.addEventListener('touchstart', function(e) {
     tx = e.touches[0].clientX;
+    ty = e.touches[0].clientY;
     clearInterval(timer);
   }, { passive: true });
   stage.addEventListener('touchend', function(e) {
     var dx = e.changedTouches[0].clientX - tx;
-    if (Math.abs(dx) > 40) {
-      show(dx < 0 ? Math.min(page + 1, pages - 1) : Math.max(page - 1, 0));
+    var dy = e.changedTouches[0].clientY - ty;
+    if (Math.abs(dx) > 30 && Math.abs(dx) > Math.abs(dy)) {
+      show(dx < 0 ? (page + 1) % pages : (page - 1 + pages) % pages);
     }
     startTimer();
   });
