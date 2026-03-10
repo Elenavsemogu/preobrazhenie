@@ -31,6 +31,9 @@
   .sponsor-hero-text p {
     opacity: .92;
   }
+  .header:not(.scrolled) .header__logo { color: var(--white); }
+  .header:not(.scrolled) .header__logo-icon { filter: brightness(0) invert(1); }
+  .header:not(.scrolled) .header__burger span { background: var(--white); }
   @media (max-width: 1024px) {
     .page-hero--sponsors .page-hero__bg--desktop { display: none; }
     .page-hero--sponsors .page-hero__bg--mobile { display: block; }
