@@ -220,11 +220,55 @@
     </div>
   </section>
 
+  <!-- GALLERY -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <h2 class="section-title">Как это было</h2>
+      <p class="section-desc">Моменты из прошлых сезонов</p>
+    </div>
+    <div class="gallery__marquee">
+      <div class="gallery__row gallery__row--left">
+        <div class="gallery__track">
+          <img src="assets/gallery/group-celebration.jpg" alt="Празднование" loading="lazy">
+          <img src="assets/gallery/participant-beauty.jpg" alt="Преображённая участница" loading="lazy">
+          <img src="assets/gallery/winner.jpg" alt="Победительница" loading="lazy">
+          <img src="assets/gallery/photoshoot.jpg" alt="Фотосессия" loading="lazy">
+          <img src="assets/gallery/hairdresser.jpg" alt="Работа парикмахера" loading="lazy">
+          <img src="assets/gallery/notes.jpg" alt="На занятии" loading="lazy">
+          <img src="assets/gallery/bra-fitting.jpg" alt="Подбор белья" loading="lazy">
+          <img src="assets/gallery/group-celebration.jpg" alt="" loading="lazy" aria-hidden="true">
+          <img src="assets/gallery/participant-beauty.jpg" alt="" loading="lazy" aria-hidden="true">
+          <img src="assets/gallery/winner.jpg" alt="" loading="lazy" aria-hidden="true">
+          <img src="assets/gallery/photoshoot.jpg" alt="" loading="lazy" aria-hidden="true">
+          <img src="assets/gallery/hairdresser.jpg" alt="" loading="lazy" aria-hidden="true">
+          <img src="assets/gallery/notes.jpg" alt="" loading="lazy" aria-hidden="true">
+          <img src="assets/gallery/bra-fitting.jpg" alt="" loading="lazy" aria-hidden="true">
+        </div>
+      </div>
+      <div class="gallery__row gallery__row--right">
+        <div class="gallery__track">
+          <img src="assets/gallery/brows.jpg" alt="Работа мастера" loading="lazy">
+          <img src="assets/gallery/group-process.jpg" alt="В процессе работы" loading="lazy">
+          <img src="assets/gallery/trainer.jpg" alt="Тренировка" loading="lazy">
+          <img src="assets/gallery/awards.jpg" alt="Вручение наград" loading="lazy">
+          <img src="assets/gallery/expert-consult.jpg" alt="Консультация эксперта" loading="lazy">
+          <img src="assets/gallery/participant-transform.jpg" alt="Участница проекта" loading="lazy">
+          <img src="assets/gallery/brows.jpg" alt="" loading="lazy" aria-hidden="true">
+          <img src="assets/gallery/group-process.jpg" alt="" loading="lazy" aria-hidden="true">
+          <img src="assets/gallery/trainer.jpg" alt="" loading="lazy" aria-hidden="true">
+          <img src="assets/gallery/awards.jpg" alt="" loading="lazy" aria-hidden="true">
+          <img src="assets/gallery/expert-consult.jpg" alt="" loading="lazy" aria-hidden="true">
+          <img src="assets/gallery/participant-transform.jpg" alt="" loading="lazy" aria-hidden="true">
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- PARTNERS -->
   <section class="partners" id="partners">
     <div class="container">
       <h2 class="section-title">Партнёры сезона</h2>
-      <div class="partners__grid">
+      <div class="partners__stage" id="partnersStage">
         <div class="partner">
           <div class="partner__logo"><img src="assets/partners/stefan.png" alt="Stefan" loading="lazy"></div>
           <h4>Stefan</h4>
@@ -256,6 +300,10 @@
           <p>Женский фотограф и плюс-сайз блогер</p>
         </div>
       </div>
+      <div class="partners__dots" id="partnersDots">
+        <button class="partners__dot active"></button>
+        <button class="partners__dot"></button>
+      </div>
     </div>
   </section>
 
@@ -285,6 +333,19 @@
     </div>
   </section>
 
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox__close" aria-label="Закрыть">&times;</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lbPrev" aria-label="Назад">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <img class="lightbox__img" id="lightboxImg" alt="">
+    <button class="lightbox__nav lightbox__nav--next" id="lbNext" aria-label="Вперёд">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <div class="lightbox__counter" id="lbCounter"></div>
+  </div>
+
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer__inner">
@@ -293,6 +354,7 @@
         <p class="footer__legal">ИНН 668500699202 &bull; ОГРНИП 324665800015670</p>
       </div>
       <div class="footer__right">
+        <a href="brand.html" class="footer__link">Маркетинговые материалы</a>
         <p>Сайт создан <a href="https://papina.team" target="_blank" rel="noopener">ПАПИНА</a></p>
       </div>
     </div>
@@ -409,6 +471,107 @@ window.addEventListener('scroll', function() {
   }).catch(function() {
     sv.addEventListener('loadedmetadata', function() { bindScroll(); });
     if (sv.readyState >= 1) bindScroll();
+  });
+})();
+
+(function() {
+  var stage = document.getElementById('partnersStage');
+  if (!stage) return;
+  var cards = stage.querySelectorAll('.partner');
+  var dotsBox = document.getElementById('partnersDots');
+  var total = cards.length;
+  var mobile = window.innerWidth <= 768;
+  var per = mobile ? 1 : 3;
+  var page = 0;
+  var pages = Math.ceil(total / per);
+
+  dotsBox.innerHTML = '';
+  for (var d = 0; d < pages; d++) {
+    var dot = document.createElement('button');
+    dot.className = 'partners__dot';
+    dotsBox.appendChild(dot);
+  }
+  var dots = dotsBox.querySelectorAll('.partners__dot');
+
+  function show(p) {
+    page = p;
+    var start = p * per;
+    cards.forEach(function(c, i) {
+      c.classList.toggle('partner--active', i >= start && i < start + per);
+    });
+    dots.forEach(function(d, i) { d.classList.toggle('active', i === p); });
+  }
+
+  dots.forEach(function(d, i) {
+    d.addEventListener('click', function() { show(i); resetTimer(); });
+  });
+
+  var timer;
+  function advance() { show((page + 1) % pages); }
+  function startTimer() { timer = setInterval(advance, 4000); }
+  function resetTimer() { clearInterval(timer); startTimer(); }
+  stage.addEventListener('mouseenter', function() { clearInterval(timer); });
+  stage.addEventListener('mouseleave', startTimer);
+  show(0);
+  startTimer();
+})();
+
+(function() {
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lightboxImg');
+  var lbCounter = document.getElementById('lbCounter');
+  if (!lb || !lbImg) return;
+
+  var images = [];
+  document.querySelectorAll('.gallery__track img:not([aria-hidden])').forEach(function(img) {
+    images.push({ src: img.src, alt: img.alt });
+  });
+  var cur = 0;
+
+  function showPhoto(i) {
+    cur = (i + images.length) % images.length;
+    lbImg.src = images[cur].src;
+    lbImg.alt = images[cur].alt;
+    lbCounter.textContent = (cur + 1) + ' / ' + images.length;
+  }
+
+  document.querySelectorAll('.gallery__track img:not([aria-hidden])').forEach(function(img, idx) {
+    img.addEventListener('click', function() {
+      showPhoto(idx);
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  document.getElementById('lbPrev').addEventListener('click', function(e) {
+    e.stopPropagation(); showPhoto(cur - 1);
+  });
+  document.getElementById('lbNext').addEventListener('click', function(e) {
+    e.stopPropagation(); showPhoto(cur + 1);
+  });
+
+  function close() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  lb.addEventListener('click', function(e) {
+    if (e.target === lb) close();
+  });
+  document.querySelector('.lightbox__close').addEventListener('click', close);
+  document.addEventListener('keydown', function(e) {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') showPhoto(cur - 1);
+    if (e.key === 'ArrowRight') showPhoto(cur + 1);
+  });
+
+  var touchX = 0;
+  lbImg.addEventListener('touchstart', function(e) {
+    touchX = e.touches[0].clientX;
+  }, {passive: true});
+  lbImg.addEventListener('touchend', function(e) {
+    var dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 40) showPhoto(cur + (dx < 0 ? 1 : -1));
   });
 })();
 </script>

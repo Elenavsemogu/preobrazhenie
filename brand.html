@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Брендбук — Преображение | Барнаул</title>
+  <meta name="description" content="Брендбук проекта Преображение. Логотип, фирменные цвета, шрифты и материалы для партнёров.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700&family=Raleway:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .brand-section { padding: 64px 0; }
+    .brand-section:nth-child(even) { background: var(--gray-50); }
+    .brand-section__title {
+      font-family: var(--font-heading);
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 600;
+      color: var(--gray-900);
+      margin-bottom: 12px;
+    }
+    .brand-section__desc {
+      font-size: 15px;
+      color: var(--gray-600);
+      margin-bottom: 40px;
+      max-width: 560px;
+    }
+
+    .brand-logo-row {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .brand-logo-card {
+      flex: 1;
+      min-width: 280px;
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: 48px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .brand-logo-card--dark {
+      background: var(--dark);
+      border-color: var(--dark);
+    }
+    .brand-logo-card img {
+      max-width: 100%;
+      max-height: none;
+      height: auto;
+      width: auto;
+    }
+    .brand-logo-card .logo-combo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .brand-logo-card .logo-combo span {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gray-800);
+    }
+    .brand-logo-card--dark .logo-combo span { color: var(--white); }
+
+    .brand-anim {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      max-width: 480px;
+      background: #f7f4fa;
+    }
+    .brand-anim video {
+      width: 100%;
+      display: block;
+    }
+    .brand-anim__label {
+      text-align: center;
+      padding: 12px;
+      font-size: 13px;
+      color: var(--gray-400);
+    }
+
+    .brand-colors {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 16px;
+    }
+    .brand-color {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--gray-200);
+    }
+    .brand-color__swatch {
+      height: 80px;
+    }
+    .brand-color__info {
+      padding: 12px 14px;
+      background: var(--white);
+    }
+    .brand-color__name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gray-900);
+      margin-bottom: 2px;
+    }
+    .brand-color__hex {
+      font-size: 13px;
+      color: var(--gray-400);
+      font-family: monospace;
+    }
+
+    .brand-fonts {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .brand-font-sample {
+      padding: 32px;
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+    }
+    .brand-font-sample__name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--lilac);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+    .brand-font-sample--heading .brand-font-sample__text {
+      font-family: var(--font-heading);
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 600;
+      color: var(--gray-900);
+      line-height: 1.2;
+    }
+    .brand-font-sample--display .brand-font-sample__text {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 3vw, 32px);
+      font-weight: 300;
+      color: var(--gray-800);
+      letter-spacing: 6px;
+      text-transform: uppercase;
+    }
+    .brand-font-sample--body .brand-font-sample__text {
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: var(--gray-600);
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    .brand-downloads {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .brand-dl {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 20px;
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      transition: var(--transition);
+      color: var(--gray-800);
+    }
+    .brand-dl:hover { border-color: var(--lilac); box-shadow: var(--shadow-md); }
+    .brand-dl__icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: var(--lilac-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--lilac);
+      flex-shrink: 0;
+    }
+    .brand-dl__name { font-size: 14px; font-weight: 600; }
+    .brand-dl__meta { font-size: 12px; color: var(--gray-400); }
+
+    @media (max-width: 768px) {
+      .brand-logo-row { flex-direction: column; gap: 16px; }
+      .brand-logo-card { min-width: 0; width: 100%; }
+      .brand-videos-grid { grid-template-columns: 1fr !important; }
+      .brand-static-split { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header header--light" id="top">
+    <div class="container header__inner">
+      <a href="index.html" class="header__logo">
+        <img class="header__logo-icon" src="assets/p-letter-hq.png" alt="П" width="32" height="32">
+        <span>Преображение</span>
+      </a>
+      <nav class="header__nav">
+        <a href="index.html#about" class="header__link">О проекте</a>
+        <a href="participants.html" class="header__link">Участницам</a>
+        <a href="sponsors.html" class="header__link">Спонсорам</a>
+        <a href="index.html#partners" class="header__link">Партнёры</a>
+      </nav>
+      <div class="header__actions">
+        <a href="participants.html#form" class="btn btn--outline btn--sm">Подать заявку</a>
+        <a href="sponsors.html#packages" class="btn btn--primary btn--sm">Стать спонсором</a>
+      </div>
+      <button class="header__burger" id="burger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-menu__nav">
+      <a href="index.html#about" class="mobile-menu__link">О проекте</a>
+      <a href="participants.html" class="mobile-menu__link">Участницам</a>
+      <a href="sponsors.html" class="mobile-menu__link">Спонсорам</a>
+      <a href="index.html#partners" class="mobile-menu__link">Партнёры</a>
+      <a href="participants.html#form" class="btn btn--outline">Подать заявку</a>
+      <a href="sponsors.html#packages" class="btn btn--primary">Стать спонсором</a>
+    </nav>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <h1>Брендбук</h1>
+    <p>Фирменный стиль проекта «Преображение». Материалы для партнёров, спонсоров и прессы.</p>
+  </section>
+
+  <!-- LOGO -->
+  <section class="brand-section">
+    <div class="container">
+      <h2 class="brand-section__title">Логотип</h2>
+      <p class="brand-section__desc">Буква «П» с цветущими цветами + надпись «Преображение». Два варианта — для светлого и тёмного фона. Доступны в PNG, SVG и PDF.</p>
+      <div style="display:flex;flex-direction:column;gap:40px;">
+        <div>
+          <h3 style="font-size:15px;font-weight:600;color:var(--gray-800);margin-bottom:12px;">Светлый фон (тёмный текст)</h3>
+          <div class="brand-logo-card" style="padding:48px 40px;">
+            <img src="assets/logopreo.png" alt="Логотип — светлый фон" style="max-width:100%;height:auto;display:block;">
+          </div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;">
+            <a href="assets/logopreo.png" download class="btn btn--outline btn--sm">PNG</a>
+            <a href="assets/logopreo.svg" download class="btn btn--outline btn--sm">SVG</a>
+            <a href="assets/logopreo.pdf" download class="btn btn--outline btn--sm">PDF</a>
+          </div>
+        </div>
+        <div>
+          <h3 style="font-size:15px;font-weight:600;color:var(--gray-800);margin-bottom:12px;">Тёмный фон (светлый текст)</h3>
+          <div class="brand-logo-card brand-logo-card--dark" style="padding:48px 40px;">
+            <img src="assets/logopreodarkbg.png" alt="Логотип — тёмный фон" style="max-width:100%;height:auto;display:block;">
+          </div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;">
+            <a href="assets/logopreodarkbg.png" download class="btn btn--outline btn--sm">PNG</a>
+            <a href="assets/logopreodarkbg.svg" download class="btn btn--outline btn--sm">SVG</a>
+            <a href="assets/logopreodarkbg.pdf" download class="btn btn--outline btn--sm">PDF</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HERO VIDEOS -->
+  <section class="brand-section">
+    <div class="container">
+      <h2 class="brand-section__title">Видео для hero-секций</h2>
+      <p class="brand-section__desc">Фоновые видео, используемые на сайте. Именно так они проигрываются в hero-секциях.</p>
+      <div class="brand-videos-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;">
+        <div>
+          <h3 style="font-size:15px;font-weight:600;color:var(--gray-800);margin-bottom:12px;">Главная — десктоп</h3>
+          <div class="brand-anim" style="max-width:100%;">
+            <video autoplay muted loop playsinline preload="auto">
+              <source src="assets/hero-video.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div>
+          <h3 style="font-size:15px;font-weight:600;color:var(--gray-800);margin-bottom:12px;">Участницам — десктоп (пион)</h3>
+          <div class="brand-anim" style="max-width:100%;">
+            <video autoplay muted loop playsinline preload="auto">
+              <source src="assets/peony2.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div>
+          <h3 style="font-size:15px;font-weight:600;color:var(--gray-800);margin-bottom:12px;">Главная — мобильная версия</h3>
+          <div class="brand-anim" style="max-width:280px;">
+            <video autoplay muted loop playsinline preload="auto" style="aspect-ratio:9/16;object-fit:cover;">
+              <source src="assets/hero-mobile-final.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div>
+          <h3 style="font-size:15px;font-weight:600;color:var(--gray-800);margin-bottom:12px;">Участницам — мобильная версия (пион)</h3>
+          <div class="brand-anim" style="max-width:280px;">
+            <video autoplay muted loop playsinline preload="auto" style="aspect-ratio:9/16;object-fit:cover;">
+              <source src="assets/peony3-mobile.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATIC ASSETS -->
+  <section class="brand-section">
+    <div class="container">
+      <h2 class="brand-section__title">Статичные изображения</h2>
+      <p class="brand-section__desc">Буква «П» с цветами, а также ледяные буквы «Преображение» для десктопа и мобильных.</p>
+      <div style="display:flex;flex-direction:column;gap:40px;">
+        <div>
+          <h3 style="font-size:15px;font-weight:600;color:var(--gray-800);margin-bottom:12px;">Буква «П» с цветами (без фона)</h3>
+          <div class="brand-logo-card" style="padding:40px;max-width:320px;">
+            <img src="assets/p-letter-hq.png" alt="Буква П — без фона" style="max-width:100%;height:auto;display:block;">
+          </div>
+        </div>
+        <div>
+          <h3 style="font-size:15px;font-weight:600;color:var(--gray-800);margin-bottom:12px;">Надпись — десктоп (горизонтальная)</h3>
+          <div class="brand-logo-card" style="padding:40px 32px;background:var(--lilac-soft);">
+            <img src="assets/preo-desktop.png" alt="ПРЕОБРАЖЕНИЕ — десктоп" style="max-width:100%;height:auto;display:block;">
+          </div>
+        </div>
+        <div>
+          <h3 style="font-size:15px;font-weight:600;color:var(--gray-800);margin-bottom:12px;">Надпись — мобильная (в три строки)</h3>
+          <div class="brand-logo-card" style="padding:40px;background:var(--lilac-soft);max-width:520px;">
+            <img src="assets/preo-mobile.png" alt="ПРЕОБРАЖЕНИЕ — мобильная" style="max-width:100%;height:auto;display:block;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLORS -->
+  <section class="brand-section">
+    <div class="container">
+      <h2 class="brand-section__title">Цветовая палитра</h2>
+      <p class="brand-section__desc">Основные фирменные цвета проекта.</p>
+      <div class="brand-colors">
+        <div class="brand-color">
+          <div class="brand-color__swatch" style="background:#8B6CB0"></div>
+          <div class="brand-color__info">
+            <div class="brand-color__name">Lilac</div>
+            <div class="brand-color__hex">#8B6CB0</div>
+          </div>
+        </div>
+        <div class="brand-color">
+          <div class="brand-color__swatch" style="background:#B8A0D2"></div>
+          <div class="brand-color__info">
+            <div class="brand-color__name">Lilac Light</div>
+            <div class="brand-color__hex">#B8A0D2</div>
+          </div>
+        </div>
+        <div class="brand-color">
+          <div class="brand-color__swatch" style="background:#E8E3F0"></div>
+          <div class="brand-color__info">
+            <div class="brand-color__name">Lilac Soft</div>
+            <div class="brand-color__hex">#E8E3F0</div>
+          </div>
+        </div>
+        <div class="brand-color">
+          <div class="brand-color__swatch" style="background:#1e1a28"></div>
+          <div class="brand-color__info">
+            <div class="brand-color__name">Dark</div>
+            <div class="brand-color__hex">#1E1A28</div>
+          </div>
+        </div>
+        <div class="brand-color">
+          <div class="brand-color__swatch" style="background:#111827"></div>
+          <div class="brand-color__info">
+            <div class="brand-color__name">Gray 900</div>
+            <div class="brand-color__hex">#111827</div>
+          </div>
+        </div>
+        <div class="brand-color">
+          <div class="brand-color__swatch" style="background:#FFFFFF;border-bottom:1px solid #e5e7eb"></div>
+          <div class="brand-color__info">
+            <div class="brand-color__name">White</div>
+            <div class="brand-color__hex">#FFFFFF</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPOGRAPHY -->
+  <section class="brand-section">
+    <div class="container">
+      <h2 class="brand-section__title">Типографика</h2>
+      <p class="brand-section__desc">Три шрифта — для заголовков, акцентов и основного текста.</p>
+      <div class="brand-fonts">
+        <div class="brand-font-sample brand-font-sample--heading">
+          <div class="brand-font-sample__name">Cormorant Garamond — заголовки</div>
+          <div class="brand-font-sample__text">Для участниц</div>
+        </div>
+        <div class="brand-font-sample brand-font-sample--display">
+          <div class="brand-font-sample__name">Raleway — акценты и навигация</div>
+          <div class="brand-font-sample__text">Преображение</div>
+        </div>
+        <div class="brand-font-sample brand-font-sample--body">
+          <div class="brand-font-sample__name">Manrope — основной текст</div>
+          <div class="brand-font-sample__text">Проект «Преображение» — это бесплатный социальный проект для девочек, девушек и женщин. За два месяца участницы работают с 25 экспертами, проходят мастер-классы и получают уникальную возможность преобразиться.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOADS -->
+  <section class="brand-section">
+    <div class="container">
+      <h2 class="brand-section__title">Материалы для скачивания</h2>
+      <p class="brand-section__desc">Логотипы и ассеты для партнёров и прессы.</p>
+      <div class="brand-downloads">
+        <a href="assets/p-letter-hq.png" download class="brand-dl">
+          <div class="brand-dl__icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </div>
+          <div>
+            <div class="brand-dl__name">Буква П (PNG)</div>
+            <div class="brand-dl__meta">Без фона, высокое качество</div>
+          </div>
+        </a>
+        <a href="assets/hero-video.mp4" download class="brand-dl">
+          <div class="brand-dl__icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </div>
+          <div>
+            <div class="brand-dl__name">Hero-видео десктоп (MP4)</div>
+            <div class="brand-dl__meta">Главная страница</div>
+          </div>
+        </a>
+        <a href="assets/hero-mobile-final.mp4" download class="brand-dl">
+          <div class="brand-dl__icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </div>
+          <div>
+            <div class="brand-dl__name">Hero-видео мобильное (MP4)</div>
+            <div class="brand-dl__meta">Главная страница</div>
+          </div>
+        </a>
+        <a href="assets/peony2.mp4" download class="brand-dl">
+          <div class="brand-dl__icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </div>
+          <div>
+            <div class="brand-dl__name">Пион десктоп (MP4)</div>
+            <div class="brand-dl__meta">Страница участницам</div>
+          </div>
+        </a>
+        <a href="assets/peony3-mobile.mp4" download class="brand-dl">
+          <div class="brand-dl__icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </div>
+          <div>
+            <div class="brand-dl__name">Пион мобильное (MP4)</div>
+            <div class="brand-dl__meta">Страница участницам</div>
+          </div>
+        </a>
+        <a href="assets/preo-desktop.png" download class="brand-dl">
+          <div class="brand-dl__icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </div>
+          <div>
+            <div class="brand-dl__name">Надпись десктоп (PNG)</div>
+            <div class="brand-dl__meta">1024×977, ледяные буквы</div>
+          </div>
+        </a>
+        <a href="assets/preo-mobile.png" download class="brand-dl">
+          <div class="brand-dl__icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </div>
+          <div>
+            <div class="brand-dl__name">Надпись мобильная (PNG)</div>
+            <div class="brand-dl__meta">1024×977, ледяные буквы в 3 строки</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__left">
+        <p class="footer__legal">ИП Заматаева Юлия Витальевна</p>
+        <p class="footer__legal">ИНН 668500699202 &bull; ОГРНИП 324665800015670</p>
+      </div>
+      <div class="footer__right">
+        <a href="brand.html" class="footer__link">Маркетинговые материалы</a>
+        <p>Сайт создан <a href="https://papina.team" target="_blank" rel="noopener">ПАПИНА</a></p>
+      </div>
+    </div>
+  </footer>
+
+<script>
+document.getElementById('burger').addEventListener('click', function() {
+  this.classList.toggle('active');
+  document.getElementById('mobileMenu').classList.toggle('open');
+  document.body.classList.toggle('menu-open');
+});
+document.querySelectorAll('.mobile-menu__link, .mobile-menu .btn').forEach(function(el) {
+  el.addEventListener('click', function() {
+    document.getElementById('burger').classList.remove('active');
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.body.classList.remove('menu-open');
+  });
+});
+window.addEventListener('scroll', function() {
+  document.querySelector('.header').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+
+</script>
+</body>
+</html>

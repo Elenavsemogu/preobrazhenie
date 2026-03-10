@@ -9,6 +9,29 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700&family=Raleway:wght@200;300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+<style>
+  .page-hero--sponsors {
+    margin-top: -80px;
+    padding-top: 0;
+  }
+  .page-hero--sponsors .page-hero__sticky {
+    padding-top: 0;
+  }
+  .sponsor-hero-text h1,
+  .sponsor-hero-text p {
+    color: #fff;
+    text-shadow: 0 2px 16px rgba(0,0,0,.5), 0 0 40px rgba(0,0,0,.3);
+  }
+  .sponsor-hero-text {
+    background: radial-gradient(ellipse at center, rgba(0,0,0,.35) 0%, transparent 70%);
+    padding: 40px 32px;
+    border-radius: 24px;
+    max-width: 560px;
+  }
+  .sponsor-hero-text p {
+    opacity: .92;
+  }
+</style>
 </head>
 <body>
 
@@ -48,9 +71,16 @@
   </div>
 
   <!-- PAGE HERO -->
-  <section class="page-hero">
-    <h1>Для спонсоров и экспертов</h1>
-    <p>Становясь спонсором-экспертом, ты не только делаешь добро, но и создаёшь мощный инструмент продвижения себя и своего дела</p>
+  <section class="page-hero page-hero--peony page-hero--sponsors" id="sponsorHeroSection">
+    <div class="page-hero__sticky" style="align-items:center;padding-top:0;">
+      <video class="page-hero__bg" id="sponsorHeroVideo" muted playsinline preload="auto">
+        <source src="assets/peonyarch-light.mp4" type="video/mp4">
+      </video>
+      <div class="page-hero__text sponsor-hero-text" style="text-align:center;">
+        <h1>Для спонсоров и экспертов</h1>
+        <p>Становясь спонсором-экспертом, ты не только делаешь добро, но и создаёшь мощный инструмент продвижения себя и своего дела</p>
+      </div>
+    </div>
   </section>
 
   <!-- WHY -->
@@ -87,11 +117,11 @@
           <div class="specialists__num">01</div>
           <h3>Красота и стиль</h3>
           <ul>
-            <li>Перманентный макияж</li>
-            <li>Парикмахер-колорист</li>
+            <li class="taken">Перманентный макияж <span class="spec-badge">JZPMU</span></li>
+            <li class="taken">Парикмахер-колорист <span class="spec-badge">RUTZ</span></li>
             <li>Косметолог</li>
             <li>Визажист</li>
-            <li>Стилист</li>
+            <li class="taken">Стилист <span class="spec-badge">Stefan</span></li>
             <li>Маникюр и педикюр</li>
             <li>Ресницы</li>
             <li>Лазерная эпиляция</li>
@@ -114,7 +144,7 @@
           <h3>Личностный рост</h3>
           <ul>
             <li>Психолог</li>
-            <li>Этикет</li>
+            <li class="taken">Этикет <span class="spec-badge">Евгения Скиба</span></li>
             <li>Финансы</li>
             <li>Нумеролог / астролог</li>
           </ul>
@@ -123,7 +153,7 @@
           <div class="specialists__num">04</div>
           <h3>Творчество и медиа</h3>
           <ul>
-            <li>Фотограф</li>
+            <li class="taken">Фотограф <span class="spec-badge">Ксения Сергеева</span></li>
             <li>Хореограф</li>
             <li>Специалист по соцсетям</li>
             <li>Кондитер / повар</li>
@@ -258,6 +288,7 @@
         <p class="footer__legal">ИНН 668500699202 &bull; ОГРНИП 324665800015670</p>
       </div>
       <div class="footer__right">
+        <a href="brand.html" class="footer__link">Маркетинговые материалы</a>
         <p>Сайт создан <a href="https://papina.team" target="_blank" rel="noopener">ПАПИНА</a></p>
       </div>
     </div>
@@ -285,6 +316,64 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
 window.addEventListener('scroll', function() {
   document.querySelector('.header').classList.toggle('scrolled', window.scrollY > 40);
 });
+
+(function() {
+  var sv = document.getElementById('sponsorHeroVideo');
+  var section = document.getElementById('sponsorHeroSection');
+  if (!sv || !section) return;
+
+  var currentT = 0, targetT = 0, animating = false, scrollMode = false;
+
+  function animate() {
+    currentT += (targetT - currentT) * 0.08;
+    if (Math.abs(currentT - targetT) < 0.001) currentT = targetT;
+    if (sv.duration && isFinite(sv.duration)) sv.currentTime = currentT * sv.duration;
+    if (Math.abs(currentT - targetT) > 0.001) requestAnimationFrame(animate);
+    else animating = false;
+  }
+
+  function onScroll() {
+    var rect = section.getBoundingClientRect();
+    var travel = section.offsetHeight - window.innerHeight;
+    targetT = Math.max(0, Math.min(1, -rect.top / travel));
+    if (!animating) { animating = true; requestAnimationFrame(animate); }
+  }
+
+  function bindScroll() {
+    scrollMode = true;
+    sv.pause();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  var src = sv.querySelector('source');
+  var url = src ? src.getAttribute('src') : sv.src;
+  fetch(url).then(function(r) { return r.blob(); }).then(function(blob) {
+    sv.src = URL.createObjectURL(blob);
+    sv.load();
+    sv.addEventListener('loadedmetadata', function onM() {
+      sv.removeEventListener('loadedmetadata', onM);
+      sv.play().then(function() {
+        sv.addEventListener('timeupdate', function onEnd() {
+          if (sv.currentTime >= sv.duration * 0.5 || scrollMode) {
+            sv.removeEventListener('timeupdate', onEnd);
+            if (!scrollMode) bindScroll();
+          }
+        });
+        window.addEventListener('scroll', function once() {
+          window.removeEventListener('scroll', once);
+          if (!scrollMode) {
+            currentT = sv.currentTime / sv.duration;
+            bindScroll();
+          }
+        }, { passive: true });
+      }).catch(function() { bindScroll(); });
+    });
+  }).catch(function() {
+    sv.addEventListener('loadedmetadata', function() { bindScroll(); });
+    if (sv.readyState >= 1) bindScroll();
+  });
+})();
 </script>
 </body>
 </html>
