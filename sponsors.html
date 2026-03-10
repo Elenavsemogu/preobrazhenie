@@ -20,7 +20,7 @@
   .sponsor-hero-text h1,
   .sponsor-hero-text p {
     color: #fff;
-    text-shadow: 0 2px 16px rgba(0,0,0,.5), 0 0 40px rgba(0,0,0,.3);
+    text-shadow: 0 1px 6px rgba(0,0,0,.25);
   }
   .sponsor-hero-text {
     background: radial-gradient(ellipse at center, rgba(0,0,0,.35) 0%, transparent 70%);
@@ -31,12 +31,16 @@
   .sponsor-hero-text p {
     opacity: .92;
   }
+  @media (max-width: 1024px) {
+    .page-hero--sponsors .page-hero__bg--desktop { display: none; }
+    .page-hero--sponsors .page-hero__bg--mobile { display: block; }
+  }
 </style>
 </head>
 <body>
 
   <!-- HEADER -->
-  <header class="header header--light" id="top">
+  <header class="header" id="top">
     <div class="container header__inner">
       <a href="index.html" class="header__logo">
         <img class="header__logo-icon" src="assets/p-letter-hq.png" alt="П" width="32" height="32">
@@ -73,8 +77,11 @@
   <!-- PAGE HERO -->
   <section class="page-hero page-hero--peony page-hero--sponsors" id="sponsorHeroSection">
     <div class="page-hero__sticky" style="align-items:center;padding-top:0;">
-      <video class="page-hero__bg" id="sponsorHeroVideo" muted playsinline preload="auto">
+      <video class="page-hero__bg page-hero__bg--desktop" id="sponsorHeroVideo" muted playsinline preload="auto">
         <source src="assets/peonyarch-light.mp4" type="video/mp4">
+      </video>
+      <video class="page-hero__bg page-hero__bg--mobile" id="sponsorHeroVideoMobile" muted playsinline preload="auto">
+        <source src="assets/peonyarch-mobile.mp4" type="video/mp4">
       </video>
       <div class="page-hero__text sponsor-hero-text" style="text-align:center;">
         <h1>Для спонсоров и экспертов</h1>
@@ -318,7 +325,9 @@ window.addEventListener('scroll', function() {
 });
 
 (function() {
-  var sv = document.getElementById('sponsorHeroVideo');
+  var sv = window.innerWidth <= 1024
+    ? document.getElementById('sponsorHeroVideoMobile')
+    : document.getElementById('sponsorHeroVideo');
   var section = document.getElementById('sponsorHeroSection');
   if (!sv || !section) return;
 
