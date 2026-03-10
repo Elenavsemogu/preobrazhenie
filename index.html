@@ -299,11 +299,52 @@
           <h4>Ксения Сергеева</h4>
           <p>Женский фотограф и плюс-сайз блогер</p>
         </div>
+        <div class="partner">
+          <div class="partner__logo"><img src="assets/partner-adiyan.jpg" alt="Ольга Адиян" loading="lazy"></div>
+          <h4>Ольга Адиян</h4>
+          <p>Эстетическая и аппаратная косметология</p>
+        </div>
+        <div class="partner">
+          <div class="partner__logo"><img src="assets/partner-nesynova.jpg" alt="Юлия Несынова" loading="lazy"></div>
+          <h4>Юлия Несынова</h4>
+          <p>Нутрициолог</p>
+        </div>
+        <div class="partner">
+          <div class="partner__logo"><img src="assets/partner-liora.jpg" alt="ЛИОРА" loading="lazy"></div>
+          <h4>ЛИОРА</h4>
+          <p>Студия эстетики тела</p>
+        </div>
+        <div class="partner">
+          <div class="partner__logo"><img src="assets/partner-vishnyak.jpg" alt="Анастасия Вишняк" loading="lazy"></div>
+          <h4>Анастасия Вишняк</h4>
+          <p>Нейрокоуч, психолог, эксперт по женской сексуальной энергии</p>
+        </div>
+        <div class="partner">
+          <div class="partner__logo"><img src="assets/partner-vaza.jpg" alt="ВАЗА" loading="lazy"></div>
+          <h4>ВАЗА</h4>
+          <p>Флористическая студия</p>
+        </div>
+        <div class="partner">
+          <div class="partner__logo"><img src="assets/partner-palagina.jpg" alt="Марина Палагина" loading="lazy"></div>
+          <h4>Марина Палагина</h4>
+          <p>Предприниматель, основатель международного онлайн-клуба ICONA</p>
+        </div>
+        <div class="partner">
+          <div class="partner__logo"><img src="assets/partner-bodyclub.png" alt="Боди Клаб" loading="lazy"></div>
+          <h4>Боди Клаб</h4>
+          <p>Женский фитнес-клуб</p>
+        </div>
+        <div class="partner">
+          <div class="partner__logo"><img src="assets/partner-matkova.jpg" alt="Вероника Маткова" loading="lazy"></div>
+          <h4>Вероника Маткова</h4>
+          <p>Специалист по соцсетям</p>
+        </div>
       </div>
       <div class="partners__dots" id="partnersDots">
         <button class="partners__dot active"></button>
         <button class="partners__dot"></button>
       </div>
+      <div class="partners__counter" id="partnersCounter"></div>
     </div>
   </section>
 
@@ -355,7 +396,7 @@
       </div>
       <div class="footer__right">
         <a href="brand.html" class="footer__link">Маркетинговые материалы</a>
-        <p>Сайт создан <a href="https://papina.team" target="_blank" rel="noopener">ПАПИНА</a></p>
+        <p>Сайт создан <a href="https://papina.team" target="_blank" rel="noopener" class="footer__brand">ПАПИНА</a></p>
       </div>
     </div>
   </footer>
@@ -493,6 +534,8 @@ window.addEventListener('scroll', function() {
   }
   var dots = dotsBox.querySelectorAll('.partners__dot');
 
+  var counter = document.getElementById('partnersCounter');
+
   function show(p) {
     page = p;
     var start = p * per;
@@ -500,6 +543,7 @@ window.addEventListener('scroll', function() {
       c.classList.toggle('partner--active', i >= start && i < start + per);
     });
     dots.forEach(function(d, i) { d.classList.toggle('active', i === p); });
+    if (counter && mobile) counter.textContent = (p + 1) + ' / ' + pages;
   }
 
   dots.forEach(function(d, i) {
@@ -512,6 +556,20 @@ window.addEventListener('scroll', function() {
   function resetTimer() { clearInterval(timer); startTimer(); }
   stage.addEventListener('mouseenter', function() { clearInterval(timer); });
   stage.addEventListener('mouseleave', startTimer);
+
+  var tx = 0;
+  stage.addEventListener('touchstart', function(e) {
+    tx = e.touches[0].clientX;
+    clearInterval(timer);
+  }, { passive: true });
+  stage.addEventListener('touchend', function(e) {
+    var dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 40) {
+      show(dx < 0 ? Math.min(page + 1, pages - 1) : Math.max(page - 1, 0));
+    }
+    startTimer();
+  });
+
   show(0);
   startTimer();
 })();

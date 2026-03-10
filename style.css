@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap');
+
 /* === VARIABLES === */
 :root {
   --lilac: #8B6CB0;
@@ -242,7 +244,7 @@ ul { list-style: none; }
     display: block;
     width: 224%;
     height: auto;
-    margin-left: -65%;
+    margin-left: -62%;
   }
   .hero__overlay { display: none; }
   .hero__top {
@@ -641,7 +643,7 @@ ul { list-style: none; }
 }
 .partners__stage::before,
 .partners__stage::after {
-  content: '';
+  content: none;
   position: absolute;
   top: 16%;
   height: 68%;
@@ -652,12 +654,9 @@ ul { list-style: none; }
 }
 .partners__stage::before { left: calc(33.333% + 5px); }
 .partners__stage::after { left: calc(66.666% - 5px); }
-.partners__stage .partner:nth-child(1),
-.partners__stage .partner:nth-child(4) { grid-column: 1; grid-row: 1; }
-.partners__stage .partner:nth-child(2),
-.partners__stage .partner:nth-child(5) { grid-column: 2; grid-row: 1; }
-.partners__stage .partner:nth-child(3),
-.partners__stage .partner:nth-child(6) { grid-column: 3; grid-row: 1; }
+.partners__stage .partner:nth-child(3n+1) { grid-column: 1; grid-row: 1; }
+.partners__stage .partner:nth-child(3n+2) { grid-column: 2; grid-row: 1; }
+.partners__stage .partner:nth-child(3n+3) { grid-column: 3; grid-row: 1; }
 .partners__stage .partner {
   opacity: 0;
   transform: translateY(6px);
@@ -688,6 +687,14 @@ ul { list-style: none; }
   background: var(--lilac);
   width: 24px;
   border-radius: 4px;
+}
+.partners__counter {
+  display: none;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--gray-400);
+  letter-spacing: 1px;
 }
 .partner {
   background: var(--white);
@@ -856,6 +863,13 @@ ul { list-style: none; }
 .footer__right a { color: var(--lilac); font-weight: 600; }
 .footer__right a:hover { text-decoration: underline; }
 .footer__link { display: block; margin-bottom: 8px; }
+.footer__brand {
+  font-family: 'Dela Gothic One', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
 
 /* === PAGE HERO (sub-pages) === */
 .page-hero {
@@ -1254,14 +1268,17 @@ ul { list-style: none; }
   }
   .partners__stage::before,
   .partners__stage::after { display: none; }
-  .partners__stage .partner:nth-child(1),
-  .partners__stage .partner:nth-child(2),
-  .partners__stage .partner:nth-child(3),
-  .partners__stage .partner:nth-child(4),
-  .partners__stage .partner:nth-child(5),
-  .partners__stage .partner:nth-child(6) {
-    grid-column: 1; grid-row: 1;
+  .partners__stage .partner,
+  .partners__stage .partner:nth-child(3n+1),
+  .partners__stage .partner:nth-child(3n+2),
+  .partners__stage .partner:nth-child(3n+3) {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    width: 100%;
+    max-width: 100%;
   }
+  .partners__dots { display: none; }
+  .partners__counter { display: block; }
   .lightbox__nav { width: 25%; }
   .specialists__grid { grid-template-columns: 1fr; }
   .cta-dual__grid { grid-template-columns: 1fr; }
