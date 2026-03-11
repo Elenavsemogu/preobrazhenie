@@ -136,6 +136,7 @@ body::before {
   transition: transform .4s cubic-bezier(.22,1,.36,1);
   box-shadow: 0 32px 80px rgba(0,0,0,.2);
   overscroll-behavior: contain;
+  position: relative;
 }
 .modal-overlay.open .modal {
   transform: translateY(0) scale(1);
@@ -143,32 +144,31 @@ body::before {
 
 /* close */
 .modal__close {
-  position: sticky; top: 0; z-index: 5;
-  float: right;
-  width: 40px; height: 40px;
+  position: absolute; top: 12px; right: 12px; z-index: 5;
+  width: 36px; height: 36px;
   border: none; border-radius: 50%;
-  background: rgba(255,255,255,.9);
+  background: rgba(255,255,255,.85);
   backdrop-filter: blur(4px);
   font-size: 20px; color: #555;
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
-  margin: 12px 12px 0 0;
   transition: background .2s;
+  line-height: 1;
 }
-.modal__close:hover { background: var(--gray-100); }
+.modal__close:hover { background: var(--white); }
 
 /* gallery */
 .modal__gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 3px;
-  margin-top: -40px;
   border-radius: 24px 24px 0 0;
   overflow: hidden;
 }
 .modal__gallery img {
   width: 100%; aspect-ratio: 1;
   object-fit: cover;
+  display: block;
   transition: filter .3s;
 }
 .modal__gallery img:hover { filter: brightness(1.05); }
@@ -284,7 +284,7 @@ body::before {
 <div class="demo">
   <p class="demo__hint">Демо для партнёров</p>
   <h1 class="demo__title">Так выглядит ваша карточка на сайте проекта</h1>
-  <p class="demo__sub">Нажмите на карточку — увидите, как она раскрывается для посетителей</p>
+  <p class="demo__sub">Нажмите на карточку — так она может раскрываться для посетителей сайта</p>
 
   <!-- CARD (as on main page) -->
   <div class="card-preview" id="cardPreview" onclick="openModal()">
@@ -306,18 +306,18 @@ body::before {
     <button class="modal__close" onclick="closeModal()" aria-label="Закрыть">&times;</button>
 
     <div class="modal__gallery">
-      <img src="assets/malina-1.jpg" alt="Наталья Федосова">
       <img src="assets/malina-2.jpg" alt="Наталья Федосова — стилист">
+      <img src="assets/malina-1.jpg" alt="Наталья Федосова">
       <img src="assets/malina-3.jpg" alt="Наталья Федосова — Малина">
     </div>
 
     <div class="modal__body">
       <h2 class="modal__name">Наталья Федосова</h2>
-      <p class="modal__role">Стилист · Магазин МАЛИНА</p>
+      <p class="modal__role">Стилист · Магазин «Малина»</p>
 
       <div class="modal__text">
-        <p>Наталья — директор и стилист магазина женской одежды и аксессуаров <strong>«МАЛИНА»</strong> в Рубцовске. Магазин предлагает качественную одежду, подобранную по последним тенденциям: верхнюю одежду, платья, свитера и кардиганы, джинсы и брюки, шарфы и шапки, и многое другое.</p>
-        <p>Ассортимент рассчитан на женщин разного возраста — большинство моделей также подходят для подростков. В&nbsp;этом уютном месте можно найти абсолютно всё для уникального образа.</p>
+        <p>16 лет в сфере стиля и моды. 7 лет собственный магазин женской одежды <strong>«Малина»</strong> в Рубцовске. Подбирает образы на мероприятия, фотосессии, повседневную жизнь — подчёркивает достоинства и учитывает особенности фигуры каждой клиентки.</p>
+        <p>В магазине — одежда и аксессуары по актуальным трендам: от верхней одежды до белья, от офиса до праздника. Доставка по всей России.</p>
       </div>
 
       <div class="modal__help">
@@ -325,7 +325,7 @@ body::before {
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
           Чем поможет участницам
         </div>
-        <p class="modal__help-text">Наталья проведёт мастер-класс по стилю: поможет каждой участнице определить свой типаж, подобрать гардероб с учётом особенностей фигуры и личных предпочтений. Научит создавать стильные образы из базовых вещей и покажет, как одеваться модно без лишних трат.</p>
+        <p class="modal__help-text">Мастер-класс по стилю: как определить свой типаж, собрать гардероб из базовых вещей и выглядеть дорого без лишних трат. Индивидуальные рекомендации для каждой участницы.</p>
       </div>
 
       <div class="modal__info">
