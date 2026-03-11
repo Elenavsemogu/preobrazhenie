@@ -3,253 +3,393 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Малина — партнёр проекта «Преображение»</title>
+  <title>Демо карточки партнёра — Преображение</title>
   <meta name="robots" content="noindex, nofollow">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700&family=Raleway:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --peony: #c77dba;
-      --peony-soft: #f3e5f5;
-      --gray-900: #1a1a1a;
-      --gray-700: #444;
-      --gray-500: #888;
-      --gray-200: #e0e0e0;
-      --gray-50: #fafaf8;
-      --white: #fff;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Manrope', sans-serif;
-      background: var(--gray-50);
-      color: var(--gray-700);
-      line-height: 1.6;
-      min-height: 100vh;
-    }
+<style>
+:root {
+  --peony: #c77dba;
+  --peony-light: #f3e5f5;
+  --peony-dark: #a85d9a;
+  --gray-900: #1a1a1a;
+  --gray-700: #444;
+  --gray-500: #888;
+  --gray-300: #ccc;
+  --gray-200: #e5e5e5;
+  --gray-100: #f2f2f0;
+  --gray-50: #fafaf8;
+  --white: #fff;
+  --r: 16px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Manrope', sans-serif;
+  background: var(--gray-50);
+  color: var(--gray-700);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
-    /* top accent line */
-    body::before {
-      content: '';
-      display: block;
-      height: 3px;
-      background: linear-gradient(90deg, var(--peony), #e8a0d0, var(--peony));
-    }
+/* ═══ TOP ACCENT ═══ */
+body::before {
+  content: '';
+  display: block; height: 3px;
+  background: linear-gradient(90deg, var(--peony), #e8a0d0, var(--peony));
+}
 
-    .page { max-width: 680px; margin: 0 auto; padding: 40px 24px 60px; }
+/* ═══ DEMO WRAPPER ═══ */
+.demo {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 48px 24px 60px;
+  text-align: center;
+}
+.demo__hint {
+  font-size: 13px; color: var(--gray-500);
+  letter-spacing: .04em; text-transform: uppercase;
+  font-weight: 600; margin-bottom: 10px;
+}
+.demo__title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px; font-weight: 600;
+  color: var(--gray-900); margin-bottom: 8px;
+  line-height: 1.2;
+}
+.demo__sub {
+  font-size: 15px; color: var(--gray-500);
+  margin-bottom: 40px; max-width: 400px;
+  margin-left: auto; margin-right: auto;
+  line-height: 1.6;
+}
 
-    /* back link */
-    .back {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 13px; color: var(--gray-500);
-      text-decoration: none; margin-bottom: 32px;
-      transition: color .2s;
-    }
-    .back:hover { color: var(--gray-900); }
-    .back svg { width: 16px; height: 16px; }
+/* ═══ PARTNER CARD (as on main site) ═══ */
+.card-preview {
+  display: inline-flex; flex-direction: column;
+  align-items: center; text-align: center;
+  background: var(--white);
+  border-radius: 20px;
+  padding: 32px 28px 28px;
+  box-shadow: 0 4px 24px rgba(0,0,0,.06);
+  cursor: pointer;
+  transition: transform .3s, box-shadow .3s;
+  position: relative;
+  max-width: 240px;
+}
+.card-preview:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(199,125,186,.2);
+}
+.card-preview::after {
+  content: 'Нажмите, чтобы открыть';
+  position: absolute; bottom: -32px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px; color: var(--peony);
+  white-space: nowrap; opacity: .7;
+  animation: pulse-hint 2s infinite;
+}
+@keyframes pulse-hint {
+  0%, 100% { opacity: .5; }
+  50% { opacity: 1; }
+}
+.card-preview__avatar {
+  width: 88px; height: 88px;
+  border-radius: 50%; overflow: hidden;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.08);
+}
+.card-preview__avatar img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 15%;
+}
+.card-preview__name {
+  font-size: 17px; font-weight: 600;
+  color: var(--gray-900); margin-bottom: 4px;
+}
+.card-preview__desc {
+  font-size: 13px; color: var(--gray-500);
+  line-height: 1.5;
+}
 
-    /* gallery */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 6px;
-      border-radius: 16px;
-      overflow: hidden;
-      margin-bottom: 32px;
-    }
-    .gallery img {
-      width: 100%; aspect-ratio: 1;
-      object-fit: cover;
-      transition: transform .4s;
-    }
-    .gallery img:hover { transform: scale(1.04); }
+/* ═══ MODAL OVERLAY ═══ */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0,0,0,.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px;
+  opacity: 0; pointer-events: none;
+  transition: opacity .3s;
+}
+.modal-overlay.open { opacity: 1; pointer-events: auto; }
 
-    /* header */
-    .partner-header { margin-bottom: 28px; }
-    .partner-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 36px; font-weight: 600;
-      color: var(--gray-900);
-      line-height: 1.2;
-      margin-bottom: 6px;
-    }
-    .partner-role {
-      font-size: 14px; color: var(--peony);
-      font-weight: 500; letter-spacing: .02em;
-    }
+/* ═══ MODAL ═══ */
+.modal {
+  background: var(--white);
+  border-radius: 24px;
+  max-width: 580px; width: 100%;
+  max-height: 90vh; overflow-y: auto;
+  transform: translateY(30px) scale(.96);
+  transition: transform .4s cubic-bezier(.22,1,.36,1);
+  box-shadow: 0 32px 80px rgba(0,0,0,.2);
+  overscroll-behavior: contain;
+}
+.modal-overlay.open .modal {
+  transform: translateY(0) scale(1);
+}
 
-    /* description */
-    .desc { font-size: 15px; line-height: 1.75; color: var(--gray-700); margin-bottom: 28px; }
-    .desc p { margin-bottom: 12px; }
+/* close */
+.modal__close {
+  position: sticky; top: 0; z-index: 5;
+  float: right;
+  width: 40px; height: 40px;
+  border: none; border-radius: 50%;
+  background: rgba(255,255,255,.9);
+  backdrop-filter: blur(4px);
+  font-size: 20px; color: #555;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  margin: 12px 12px 0 0;
+  transition: background .2s;
+}
+.modal__close:hover { background: var(--gray-100); }
 
-    /* help block */
-    .help-block {
-      background: var(--white);
-      border: 1px solid var(--gray-200);
-      border-radius: 14px;
-      padding: 24px 28px;
-      margin-bottom: 28px;
-    }
-    .help-block__icon {
-      width: 40px; height: 40px;
-      background: var(--peony-soft);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 14px;
-    }
-    .help-block__icon svg { width: 20px; height: 20px; color: var(--peony); }
-    .help-block__title {
-      font-size: 16px; font-weight: 600;
-      color: var(--gray-900); margin-bottom: 8px;
-    }
-    .help-block__text { font-size: 14px; line-height: 1.7; color: var(--gray-700); }
+/* gallery */
+.modal__gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  margin-top: -40px;
+  border-radius: 24px 24px 0 0;
+  overflow: hidden;
+}
+.modal__gallery img {
+  width: 100%; aspect-ratio: 1;
+  object-fit: cover;
+  transition: filter .3s;
+}
+.modal__gallery img:hover { filter: brightness(1.05); }
 
-    /* info row */
-    .info {
-      display: flex; flex-wrap: wrap; gap: 10px 20px;
-      font-size: 13px; color: var(--gray-500);
-      margin-bottom: 28px;
-      padding-bottom: 24px;
-      border-bottom: 1px solid var(--gray-200);
-    }
-    .info-item { display: flex; align-items: center; gap: 6px; }
-    .info-item svg { width: 15px; height: 15px; opacity: .5; flex-shrink: 0; }
+/* body */
+.modal__body { padding: 28px 32px 36px; }
 
-    /* links */
-    .links { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; }
-    .link {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 24px;
-      border-radius: 100px;
-      font-size: 14px; font-weight: 500;
-      text-decoration: none;
-      transition: all .2s;
-      border: 1.5px solid var(--gray-200);
-      color: var(--gray-700);
-    }
-    .link:hover { border-color: var(--peony); color: var(--peony); }
-    .link svg { width: 18px; height: 18px; }
-    .link--primary {
-      background: var(--peony); color: var(--white); border-color: var(--peony);
-    }
-    .link--primary:hover { background: #b56ca8; border-color: #b56ca8; color: var(--white); }
+.modal__name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px; font-weight: 600;
+  color: var(--gray-900); line-height: 1.2;
+  margin-bottom: 4px;
+}
+.modal__role {
+  font-size: 14px; color: var(--peony);
+  font-weight: 500; letter-spacing: .02em;
+  margin-bottom: 20px;
+}
 
-    /* badge */
-    .badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 10px 18px; border-radius: 12px;
-      background: var(--peony-soft); font-size: 13px; color: var(--peony);
-      font-weight: 500;
-    }
-    .badge svg { width: 16px; height: 16px; }
+.modal__text {
+  font-size: 15px; line-height: 1.75;
+  color: var(--gray-700); margin-bottom: 24px;
+}
+.modal__text p { margin-bottom: 10px; }
 
-    /* footer */
-    .page-footer {
-      text-align: center; font-size: 12px; color: var(--gray-500);
-      padding-top: 24px; border-top: 1px solid var(--gray-200);
-    }
-    .page-footer a { color: var(--peony); text-decoration: none; }
+/* help block */
+.modal__help {
+  background: var(--gray-50);
+  border-radius: 14px;
+  padding: 22px 24px;
+  margin-bottom: 24px;
+  border-left: 3px solid var(--peony);
+}
+.modal__help-title {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 14px; font-weight: 600;
+  color: var(--gray-900); margin-bottom: 8px;
+}
+.modal__help-title svg { width: 18px; height: 18px; color: var(--peony); flex-shrink: 0; }
+.modal__help-text { font-size: 14px; line-height: 1.7; color: var(--gray-700); }
 
-    @media (max-width: 480px) {
-      .page { padding: 24px 16px 40px; }
-      .partner-name { font-size: 28px; }
-      .links { flex-direction: column; }
-      .link { justify-content: center; }
-      .help-block { padding: 20px; }
-    }
-  </style>
+/* info */
+.modal__info {
+  display: flex; flex-wrap: wrap; gap: 8px 20px;
+  font-size: 13px; color: var(--gray-500);
+  margin-bottom: 24px;
+}
+.modal__info-item { display: flex; align-items: center; gap: 6px; }
+.modal__info-item svg { width: 15px; height: 15px; opacity: .45; flex-shrink: 0; }
+
+/* divider */
+.modal__divider {
+  height: 1px; background: var(--gray-200);
+  margin-bottom: 20px;
+}
+
+/* links */
+.modal__links { display: flex; flex-wrap: wrap; gap: 8px; }
+.modal__link {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 10px 20px; border-radius: 100px;
+  font-size: 13px; font-weight: 500;
+  text-decoration: none; transition: all .2s;
+  border: 1.5px solid var(--gray-200); color: var(--gray-700);
+}
+.modal__link:hover { border-color: var(--peony); color: var(--peony); }
+.modal__link svg { width: 16px; height: 16px; }
+.modal__link--primary {
+  background: var(--peony); color: var(--white); border-color: var(--peony);
+}
+.modal__link--primary:hover {
+  background: var(--peony-dark); border-color: var(--peony-dark); color: var(--white);
+}
+
+/* badge */
+.modal__badge {
+  text-align: center; margin-top: 24px;
+}
+.modal__badge span {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 18px; border-radius: 12px;
+  background: var(--peony-light);
+  font-size: 12px; color: var(--peony-dark);
+  font-weight: 500; letter-spacing: .01em;
+}
+.modal__badge svg { width: 15px; height: 15px; }
+
+/* ═══ BOTTOM NOTE ═══ */
+.demo__footer {
+  margin-top: 56px; text-align: center;
+  font-size: 12px; color: var(--gray-500);
+}
+.demo__footer a { color: var(--peony); text-decoration: none; }
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 600px) {
+  .demo { padding: 32px 16px 40px; }
+  .demo__title { font-size: 26px; }
+  .demo__sub { font-size: 14px; }
+  .modal { border-radius: 20px; max-height: 92vh; }
+  .modal__gallery { gap: 2px; border-radius: 20px 20px 0 0; }
+  .modal__body { padding: 20px 20px 28px; }
+  .modal__name { font-size: 26px; }
+  .modal__links { flex-direction: column; }
+  .modal__link { justify-content: center; }
+  .modal__help { padding: 18px 20px; }
+}
+</style>
 </head>
 <body>
 
-<div class="page">
+<!-- ═══ DEMO SCENE ═══ -->
+<div class="demo">
+  <p class="demo__hint">Демо для партнёров</p>
+  <h1 class="demo__title">Так выглядит ваша карточка на сайте проекта</h1>
+  <p class="demo__sub">Нажмите на карточку — увидите, как она раскрывается для посетителей</p>
 
-  <a href="index.html" class="back">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-    Преображение
-  </a>
-
-  <!-- GALLERY -->
-  <div class="gallery">
-    <img src="assets/malina-1.jpg" alt="Наталья Федосова" loading="lazy">
-    <img src="assets/malina-2.jpg" alt="Наталья Федосова — стилист" loading="lazy">
-    <img src="assets/malina-3.jpg" alt="Наталья Федосова — Малина" loading="lazy">
-  </div>
-
-  <!-- HEADER -->
-  <div class="partner-header">
-    <h1 class="partner-name">Наталья Федосова</h1>
-    <p class="partner-role">Стилист · Магазин МАЛИНА</p>
-  </div>
-
-  <!-- DESCRIPTION -->
-  <div class="desc">
-    <p>Наталья — директор и стилист магазина женской одежды и аксессуаров <strong>«МАЛИНА»</strong> в Рубцовске. Магазин предлагает качественную одежду, подобранную по последним тенденциям: верхнюю одежду, платья, свитера и кардиганы, джинсы и брюки, шарфы и шапки, пижамы и многое другое.</p>
-    <p>Ассортимент рассчитан на женщин разного возраста — большинство моделей также подходят для подростков. В этом уютном месте можно найти абсолютно всё для уникального образа.</p>
-  </div>
-
-  <!-- WHAT SHE'LL DO FOR PARTICIPANTS -->
-  <div class="help-block">
-    <div class="help-block__icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+  <!-- CARD (as on main page) -->
+  <div class="card-preview" id="cardPreview" onclick="openModal()">
+    <div class="card-preview__avatar">
+      <img src="assets/partner-fedosova.jpg" alt="Наталья Федосова">
     </div>
-    <h3 class="help-block__title">Чем поможет участницам</h3>
-    <p class="help-block__text">Наталья проведёт мастер-класс по стилю: поможет каждой участнице определить свой типаж, подобрать гардероб с учётом особенностей фигуры и личных предпочтений. Научит создавать стильные образы из базовых вещей и покажет, как одеваться модно без лишних трат.</p>
+    <div class="card-preview__name">Малина</div>
+    <div class="card-preview__desc">Магазин женской одежды и&nbsp;аксессуаров. Стилист&nbsp;— Наталья Федосова</div>
   </div>
 
-  <!-- INFO -->
-  <div class="info">
-    <div class="info-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      г. Рубцовск, Комсомольская, 127
-    </div>
-    <div class="info-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      Ежедневно 10:00–19:00
-    </div>
-    <div class="info-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-      +7 (961) 233-08-51
-    </div>
-  </div>
-
-  <!-- SOCIAL LINKS -->
-  <div class="links">
-    <a href="https://t.me/malinarbk" target="_blank" rel="noopener" class="link link--primary">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161l-1.97 9.289c-.146.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.13.833.932z"/></svg>
-      Telegram
-    </a>
-    <a href="https://vk.com/malinarbk" target="_blank" rel="noopener" class="link">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.162 18.994c.5 0 .5-.25.5-.5v-.5c-.25-.5 0-1.25.75-1.25s1.25.75 1.75 1.25c.5.5 1 1 1 1h2s1.5 0 .75-1.25c-.25-.5-.5-.75-1-1.25-.5-.5-.75-.75-1-1-.25-.25-.25-.5 0-1s1.25-2 1.5-2.75c.25-.75-.25-.75-.25-.75h-2.25s-.25 0-.5.25-.5.75-.75 1c-.75.75-1.25 1-1.5.75s-.25-.75-.25-1v-1.75c0-.75-.25-1-1-1h-3.25s-.5 0-.75.25c-.25.25 0 .5 0 .5s.75 1 .5 1.5c-.25.5-.75 1.25-.75 1.25s-.25.5-.75.25-1-.75-1.5-1.25c-.25-.5-.5-.75-.75-1s-.25-.5-.5-.5H3.5S3 9.994 3 10.244c0 .25.75 1.75 1.5 2.75s2 2.25 3.75 3.25c1.75 1 2.75.75 2.75.75h1.25c.75 0 .75.5.5 1s-.25.75-.25 1c0 .25.162.494.662.494z"/></svg>
-      ВКонтакте
-    </a>
-    <a href="https://wa.me/79619760973" target="_blank" rel="noopener" class="link">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      WhatsApp
-    </a>
-    <a href="https://t.me/fnataliamalina" target="_blank" rel="noopener" class="link">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-      Личный Telegram Натальи
-    </a>
-    <a href="tel:+79612330851" class="link">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-      Позвонить
-    </a>
-  </div>
-
-  <!-- BADGE -->
-  <div style="text-align:center; margin-bottom: 32px;">
-    <span class="badge">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
-      Партнёр проекта «Преображение» · 7-й сезон
-    </span>
-  </div>
-
-  <!-- FOOTER -->
-  <div class="page-footer">
+  <div class="demo__footer">
     <a href="index.html">Преображение</a> · Социальный проект для женщин · Барнаул, 2026
   </div>
-
 </div>
 
+<!-- ═══ MODAL ═══ -->
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <button class="modal__close" onclick="closeModal()" aria-label="Закрыть">&times;</button>
+
+    <div class="modal__gallery">
+      <img src="assets/malina-1.jpg" alt="Наталья Федосова">
+      <img src="assets/malina-2.jpg" alt="Наталья Федосова — стилист">
+      <img src="assets/malina-3.jpg" alt="Наталья Федосова — Малина">
+    </div>
+
+    <div class="modal__body">
+      <h2 class="modal__name">Наталья Федосова</h2>
+      <p class="modal__role">Стилист · Магазин МАЛИНА</p>
+
+      <div class="modal__text">
+        <p>Наталья — директор и стилист магазина женской одежды и аксессуаров <strong>«МАЛИНА»</strong> в Рубцовске. Магазин предлагает качественную одежду, подобранную по последним тенденциям: верхнюю одежду, платья, свитера и кардиганы, джинсы и брюки, шарфы и шапки, и многое другое.</p>
+        <p>Ассортимент рассчитан на женщин разного возраста — большинство моделей также подходят для подростков. В&nbsp;этом уютном месте можно найти абсолютно всё для уникального образа.</p>
+      </div>
+
+      <div class="modal__help">
+        <div class="modal__help-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          Чем поможет участницам
+        </div>
+        <p class="modal__help-text">Наталья проведёт мастер-класс по стилю: поможет каждой участнице определить свой типаж, подобрать гардероб с учётом особенностей фигуры и личных предпочтений. Научит создавать стильные образы из базовых вещей и покажет, как одеваться модно без лишних трат.</p>
+      </div>
+
+      <div class="modal__info">
+        <div class="modal__info-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          г. Рубцовск, Комсомольская, 127
+        </div>
+        <div class="modal__info-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Ежедневно 10:00–19:00
+        </div>
+        <div class="modal__info-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.12.8.3 1.6.57 2.36a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.76.27 1.55.45 2.36.57A2 2 0 0122 16.92z"/></svg>
+          +7 (961) 233-08-51
+        </div>
+      </div>
+
+      <div class="modal__divider"></div>
+
+      <div class="modal__links">
+        <a href="https://t.me/malinarbk" target="_blank" rel="noopener" class="modal__link modal__link--primary">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161l-1.97 9.289c-.146.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.13.833.932z"/></svg>
+          Telegram
+        </a>
+        <a href="https://vk.com/malinarbk" target="_blank" rel="noopener" class="modal__link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.162 18.994c.5 0 .5-.25.5-.5v-.5c-.25-.5 0-1.25.75-1.25s1.25.75 1.75 1.25c.5.5 1 1 1 1h2s1.5 0 .75-1.25c-.25-.5-.5-.75-1-1.25-.5-.5-.75-.75-1-1-.25-.25-.25-.5 0-1s1.25-2 1.5-2.75c.25-.75-.25-.75-.25-.75h-2.25s-.25 0-.5.25-.5.75-.75 1c-.75.75-1.25 1-1.5.75s-.25-.75-.25-1v-1.75c0-.75-.25-1-1-1h-3.25s-.5 0-.75.25c-.25.25 0 .5 0 .5s.75 1 .5 1.5c-.25.5-.75 1.25-.75 1.25s-.25.5-.75.25-1-.75-1.5-1.25c-.25-.5-.5-.75-.75-1s-.25-.5-.5-.5H3.5S3 9.994 3 10.244c0 .25.75 1.75 1.5 2.75s2 2.25 3.75 3.25c1.75 1 2.75.75 2.75.75h1.25c.75 0 .75.5.5 1s-.25.75-.25 1c0 .25.162.494.662.494z"/></svg>
+          ВКонтакте
+        </a>
+        <a href="https://wa.me/79619760973" target="_blank" rel="noopener" class="modal__link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+        <a href="https://t.me/fnataliamalina" target="_blank" rel="noopener" class="modal__link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Наталья
+        </a>
+        <a href="tel:+79612330851" class="modal__link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.12.8.3 1.6.57 2.36a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.76.27 1.55.45 2.36.57A2 2 0 0122 16.92z"/></svg>
+          Позвонить
+        </a>
+      </div>
+
+      <div class="modal__badge">
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+          Партнёр «Преображения» · 7-й сезон
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function openModal() {
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+});
+</script>
 </body>
 </html>
