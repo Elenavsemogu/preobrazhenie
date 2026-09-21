@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Для спонсоров и экспертов — Преображение | Барнаул</title>
-  <meta name="description" content="Стань спонсором-экспертом проекта Преображение. Продвижение бизнеса + доброе дело. Всего 25 мест.">
+  <meta name="description" content="Станьте спонсором или экспертом проекта «Преображение». 8 сезон. Помогите женщинам Барнаула измениться. Пять форматов участия от 10 000 ₽.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700&family=Raleway:wght@200;300;400;500;600&display=swap" rel="stylesheet">
@@ -26,23 +26,137 @@
     background: radial-gradient(ellipse at center, rgba(0,0,0,.35) 0%, transparent 70%);
     padding: 40px 32px;
     border-radius: 24px;
-    max-width: 560px;
+    max-width: 580px;
   }
-  .sponsor-hero-text p {
-    opacity: .92;
-  }
+  .sponsor-hero-text p { opacity: .92; }
   .header:not(.scrolled) .header__logo { color: var(--white); }
   .header:not(.scrolled) .header__logo-icon { filter: brightness(0) invert(1); }
   .header:not(.scrolled) .header__burger span { background: var(--white); }
+
+  .impact-section { padding: 80px 0; background: var(--gray-50); }
+  .impact__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 40px;
+  }
+  .impact-card {
+    padding-top: 24px;
+    border-top: 1px solid var(--gray-200);
+  }
+  .impact-card h3 {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 12px;
+    color: var(--gray-900);
+  }
+  .impact-card p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--gray-600);
+  }
+  .impact-card .impact-role {
+    font-family: var(--font-display);
+    font-size: 12px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--lilac);
+    margin-bottom: 8px;
+  }
+
+  .prize-band {
+    padding: 72px 0;
+    background: var(--dark);
+    color: #fff;
+    text-align: center;
+  }
+  .prize-band__num {
+    font-family: var(--font-display);
+    font-weight: 200;
+    font-size: clamp(48px, 8vw, 88px);
+    letter-spacing: -.03em;
+    color: #C4A8E0;
+    line-height: 1;
+    margin: 16px 0 20px;
+  }
+  .prize-band p {
+    max-width: 36em;
+    margin: 0 auto;
+    opacity: .8;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .prize-band .section-title { color: #fff; }
+
+  .ladder-intro {
+    display: grid;
+    gap: 0;
+    margin: 32px 0 48px;
+  }
+  .ladder-intro__row {
+    display: grid;
+    grid-template-columns: 160px 110px 1fr;
+    gap: 16px;
+    align-items: baseline;
+    padding: 16px 0;
+    border-top: 1px solid var(--gray-200);
+  }
+  .ladder-intro__row:last-child { border-bottom: 1px solid var(--gray-200); }
+  .ladder-intro__name {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    font-weight: 500;
+  }
+  .ladder-intro__price {
+    font-family: var(--font-display);
+    font-weight: 500;
+    color: var(--lilac);
+    font-size: 16px;
+  }
+  .ladder-intro__job {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.4;
+  }
+
+  .packages__grid--5 {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+  }
+  .packages__grid--5 .pkg {
+    padding: 24px 16px;
+  }
+  .packages__grid--5 .pkg__price { font-size: 26px; }
+  .packages__grid--5 .pkg__feature { font-size: 13px; }
+  .packages__grid--5 .pkg--featured { transform: none; }
+  .packages__grid--5 .pkg--featured:hover { transform: translateY(-4px); }
+  .pkg__diff {
+    font-size: 13px;
+    color: var(--gray-600);
+    line-height: 1.4;
+    margin: -8px 0 16px;
+    text-align: center;
+    min-height: 3.6em;
+  }
+
+  @media (max-width: 1100px) {
+    .packages__grid--5 { grid-template-columns: repeat(2, 1fr); }
+    .ladder-intro__row { grid-template-columns: 1fr 1fr; }
+    .ladder-intro__job { grid-column: 1 / -1; }
+  }
   @media (max-width: 1024px) {
     .page-hero--sponsors .page-hero__bg--desktop { display: none; }
     .page-hero--sponsors .page-hero__bg--mobile { display: block; }
+    .impact__grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .packages__grid--5 { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
   }
 </style>
 </head>
 <body>
 
-  <!-- HEADER -->
   <header class="header" id="top">
     <div class="container header__inner">
       <a href="index.html" class="header__logo">
@@ -65,7 +179,6 @@
     </div>
   </header>
 
-  <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu">
     <nav class="mobile-menu__nav">
       <a href="index.html#about" class="mobile-menu__link">О проекте</a>
@@ -77,7 +190,6 @@
     </nav>
   </div>
 
-  <!-- PAGE HERO -->
   <section class="page-hero page-hero--peony page-hero--sponsors" id="sponsorHeroSection">
     <div class="page-hero__sticky" style="align-items:center;padding-top:0;">
       <video class="page-hero__bg page-hero__bg--desktop" id="sponsorHeroVideo" muted playsinline preload="auto" poster="assets/sponsor-poster.jpg">
@@ -88,36 +200,61 @@
       </video>
       <div class="page-hero__text sponsor-hero-text" style="text-align:center;">
         <h1>Для спонсоров и экспертов</h1>
-        <p>Становясь спонсором-экспертом, ты не только делаешь добро, но и создаёшь мощный инструмент продвижения себя и своего дела</p>
+        <p>8 сезон. Вы помогаете женщинам Барнаула измениться — и становитесь частью их истории</p>
       </div>
     </div>
   </section>
 
-  <!-- WHY -->
   <section class="reasons-section">
     <div class="container">
       <h2 class="section-title">Зачем участвовать</h2>
       <div class="reasons__grid">
         <div class="reason">
           <div class="reason__num">01</div>
-          <h3>Доброе дело</h3>
-          <p>Возможность совершить по-настоящему доброе дело для прекрасной половины человечества</p>
+          <h3>Искренняя благотворительность</h3>
+          <p>Есть огромная разница между переводом в фонд и получением отчёта в конце года — и вашим реальным вложением времени и сил в реальных людей, в изменение их жизни. Вы сами влияете на то, насколько изменится жизнь этих замечательных женщин.</p>
         </div>
         <div class="reason">
           <div class="reason__num">02</div>
-          <h3>PR и продвижение</h3>
-          <p>Участие в масштабном проекте поможет проявиться и заявить о себе. Показывай, что тебя приглашают на крупные мероприятия</p>
+          <h3>Мастер-класс</h3>
+          <p>Вы как эксперт даёте участницам то, что останется с ними на всю жизнь после проекта. Как здорово, что ваш бесценный опыт и знания могут кому-то придать сил и указать верный путь.</p>
         </div>
         <div class="reason">
           <div class="reason__num">03</div>
-          <h3>Информационное поле</h3>
-          <p>Участницы и другие эксперты узнают о тебе на протяжении двух месяцев, доверяют, рассказывают знакомым</p>
+          <h3>Приз победительнице</h3>
+          <p>Победительница получит около 350 000 ₽: 100 000 наличными плюс услуги экспертов. Представляете, насколько такая сумма может поменять к лучшему жизнь одного человека? У некоторых эти преображения просто невероятны. Классно, когда вы с единомышленниками можете объединиться, сложить свои усилия и действительно масштабно повлиять на чью-то жизнь.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SPECIALISTS -->
+  <section class="impact-section">
+    <div class="container">
+      <h2 class="section-title">Как меняются участницы</h2>
+      <p class="section-desc">Истории из 7 сезона — то, ради чего существует проект</p>
+      <div class="impact__grid">
+        <article class="impact-card">
+          <div class="impact-role">Победительница 7 сезона</div>
+          <h3>Ольга Генералова</h3>
+          <p>Пришла домохозяйкой — с сомнениями и ощущением, что жизнь стоит на месте. Вышла предпринимателем-ремесленником. Улучшились отношения с мужем. Начала путь к здоровому весу с нутрициологом проекта.</p>
+        </article>
+        <article class="impact-card">
+          <div class="impact-role">Участница</div>
+          <h3>Елена Мерских</h3>
+          <p>До проекта: удалёнка в четырёх стенах, +20 кг, общение только с родными. После: −10 кг, постоянный фитнес, новый гардероб, новые отношения. «Они действительно возвращают смысл жизни девушкам, кто себя потерял».</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="prize-band">
+    <div class="container">
+      <h2 class="section-title">Призовой фонд</h2>
+      <div class="prize-band__num">~350 000 ₽</div>
+      <p>Стоимость преображения одной женщины. 100 000 ₽ — наличными, без условий. Остальное — услугами экспертов. Победительницу выбирают голосованием на закрытии.</p>
+    </div>
+  </section>
+
   <section class="specialists-section" id="specialists">
     <div class="container">
       <h2 class="section-title">Нам нужны специалисты</h2>
@@ -128,13 +265,13 @@
           <h3>Красота и стиль</h3>
           <ul>
             <li class="taken">Перманентный макияж <span class="spec-badge">JZPMU</span></li>
-            <li class="taken">Парикмахер-колорист <span class="spec-badge">RUTZ</span></li>
-            <li class="taken">Косметолог <span class="spec-badge">Екатерина Ребро</span></li>
-            <li class="taken">Визажист <span class="spec-badge">Марина Соловьёва</span></li>
-            <li class="taken">Стилист <span class="spec-badge">Наталья Федосова / Малина</span></li>
-            <li class="taken">Маникюр и педикюр <span class="spec-badge">Тамара Заровняева</span></li>
+            <li>Парикмахер-колорист</li>
+            <li>Косметолог</li>
+            <li>Визажист</li>
+            <li>Стилист</li>
+            <li>Маникюр и педикюр</li>
             <li>Ламинирование и наращивание ресниц</li>
-            <li class="taken">Лазерная эпиляция <span class="spec-badge">ЛИОРА</span></li>
+            <li>Лазерная эпиляция</li>
             <li>Брафитер</li>
           </ul>
         </div>
@@ -142,20 +279,20 @@
           <div class="specialists__num">02</div>
           <h3>Здоровье и тело</h3>
           <ul>
-            <li class="taken">Нутрициолог / диетолог <span class="spec-badge">Юлия Несынова</span></li>
-            <li class="taken">Фитнес-тренер <span class="spec-badge">Боди клаб</span></li>
+            <li>Нутрициолог / диетолог</li>
+            <li>Фитнес-тренер</li>
             <li>Йога</li>
             <li>Врач-гинеколог</li>
-            <li class="taken">Сексолог <span class="spec-badge">Анастасия Вишняк</span></li>
+            <li>Сексолог</li>
           </ul>
         </div>
         <div class="specialists__col">
           <div class="specialists__num">03</div>
           <h3>Личностный рост</h3>
           <ul>
-            <li class="taken">Психолог <span class="spec-badge">Анастасия Вишняк</span></li>
-            <li class="taken">Этикет <span class="spec-badge">Евгения Скиба</span></li>
-            <li class="taken">Финансы <span class="spec-badge">Филипп Заматаев</span></li>
+            <li>Психолог</li>
+            <li>Этикет</li>
+            <li>Финансы</li>
             <li>Нумеролог / астролог</li>
           </ul>
         </div>
@@ -165,7 +302,7 @@
           <ul>
             <li>Фотограф</li>
             <li>Хореограф</li>
-            <li class="taken">Специалист по соцсетям <span class="spec-badge">Вероника Маткова</span></li>
+            <li>Специалист по соцсетям</li>
             <li>Кондитер / повар</li>
           </ul>
         </div>
@@ -174,123 +311,158 @@
     </div>
   </section>
 
-  <!-- PACKAGES -->
   <section class="packages-section" id="packages">
     <div class="container">
       <h2 class="section-title">Форматы участия</h2>
-      <div class="packages__grid">
+      <p class="section-desc">Пять ступеней. Каждый следующий пакет включает всё из предыдущего. Бронь — 3 000 ₽, входит в стоимость.</p>
+
+      <div class="ladder-intro">
+        <div class="ladder-intro__row">
+          <div class="ladder-intro__name">Спонсор</div>
+          <div class="ladder-intro__price">10 000 ₽</div>
+          <div class="ladder-intro__job">Вас видят — логотип, листовки, упоминания</div>
+        </div>
+        <div class="ladder-intro__row">
+          <div class="ladder-intro__name">Спонсор+</div>
+          <div class="ladder-intro__price">15 000 ₽</div>
+          <div class="ladder-intro__job">Отдельный сюжет о вас и вашем подарке победительнице</div>
+        </div>
+        <div class="ladder-intro__row">
+          <div class="ladder-intro__name">Эксперт</div>
+          <div class="ladder-intro__price">30 000 ₽</div>
+          <div class="ladder-intro__job">Мастер-класс, чат, видео-визитка — оценят те, кому так важно доверие клиента</div>
+        </div>
+        <div class="ladder-intro__row">
+          <div class="ladder-intro__name">Спонсор-эксперт</div>
+          <div class="ladder-intro__price">40 000 ₽</div>
+          <div class="ladder-intro__job">Всё из «Эксперта» + эксклюзив в нише</div>
+        </div>
+        <div class="ladder-intro__row">
+          <div class="ladder-intro__name">Генеральный</div>
+          <div class="ladder-intro__price">120 000 ₽</div>
+          <div class="ladder-intro__job">Сезон ассоциируется с вами · одно место</div>
+        </div>
+      </div>
+
+      <div class="packages__grid packages__grid--5">
 
         <div class="pkg">
           <div class="pkg__header">
             <div class="pkg__name">Спонсор</div>
-            <div class="pkg__price">5 000 ₽</div>
-            <p class="pkg__note">Возможна рассрочка</p>
+            <div class="pkg__price">10 000 ₽</div>
           </div>
+          <p class="pkg__diff">Базовый вклад в проект. Ваше имя рядом с добрым делом.</p>
           <ul class="pkg__features">
-            <li class="pkg__feature included">Пост во всех соц сетях проекта</li>
-            <li class="pkg__feature included">Лого на баннере</li>
-            <li class="pkg__feature included">Лого на онлайн-баннере</li>
-            <li class="pkg__feature included">Возможность дарить подарки</li>
-            <li class="pkg__feature included">Распространение материалов</li>
-            <li class="pkg__feature included">Упоминание на закрытии</li>
-            <li class="pkg__feature included">1 аккаунт от компании</li>
-            <li class="pkg__feature included">Рекламный ролик &times; 1</li>
-            <li class="pkg__feature included">Упоминания &times; 3</li>
-            <li class="pkg__feature muted">Мастер-класс</li>
-            <li class="pkg__feature muted">Лого на бейджиках</li>
-            <li class="pkg__feature muted">Видео-визитка</li>
-            <li class="pkg__feature muted">Приветственное слово</li>
-            <li class="pkg__feature muted">Эксклюзив в нише</li>
+            <li class="pkg__feature included">Логотип на сцене и в фотозоне</li>
+            <li class="pkg__feature included">Печатная продукция на площадке</li>
+            <li class="pkg__feature included">Упоминания в соцсетях × 3</li>
+            <li class="pkg__feature included">Розыгрыши и гивы</li>
+            <li class="pkg__feature included">Текст со сцены на закрытии</li>
+            <li class="pkg__feature included">Доступ в чат участниц</li>
           </ul>
-          <a href="https://t.me/m/_iL2G3W8NGYy" target="_blank" class="btn btn--outline btn--full">Участвовать</a>
+          <a href="https://t.me/JZPMUstudio" target="_blank" class="btn btn--outline btn--full">Участвовать</a>
+        </div>
+
+        <div class="pkg">
+          <div class="pkg__header">
+            <div class="pkg__name">Спонсор+</div>
+            <div class="pkg__price">15 000 ₽</div>
+          </div>
+          <p class="pkg__diff">Ваш подарок победительнице попадает в кадр и в отдельный сюжет.</p>
+          <ul class="pkg__features">
+            <li class="pkg__feature included">Всё из пакета «Спонсор»</li>
+            <li class="pkg__feature included">Подарок победительнице в кадре</li>
+            <li class="pkg__feature included">Отдельный сюжет о вас и подарке</li>
+          </ul>
+          <p class="pkg__gift">+ сертификат победительнице от 15 000 ₽</p>
+          <a href="https://t.me/JZPMUstudio" target="_blank" class="btn btn--outline btn--full">Участвовать</a>
         </div>
 
         <div class="pkg">
           <div class="pkg__header">
             <div class="pkg__name">Эксперт</div>
-            <div class="pkg__price">13 000 ₽</div>
-            <p class="pkg__note">Возможна рассрочка</p>
+            <div class="pkg__price">30 000 ₽</div>
           </div>
+          <p class="pkg__diff">Вы делитесь знаниями: мастер-класс на полтора часа.</p>
           <ul class="pkg__features">
-            <li class="pkg__feature included">Пост во всех соц сетях проекта</li>
-            <li class="pkg__feature included">Лого на баннере</li>
-            <li class="pkg__feature included">Лого на онлайн-баннере</li>
-            <li class="pkg__feature included">Возможность дарить подарки</li>
-            <li class="pkg__feature included">Распространение материалов</li>
-            <li class="pkg__feature included">Упоминание на закрытии</li>
-            <li class="pkg__feature included">1 аккаунт от компании</li>
-            <li class="pkg__feature included">Рекламный ролик &times; 2</li>
-            <li class="pkg__feature included">Упоминания &times; 5</li>
-            <li class="pkg__feature included">Мастер-класс</li>
-            <li class="pkg__feature included">Лого на бейджиках</li>
-            <li class="pkg__feature included">Видео-визитка</li>
-            <li class="pkg__feature included">Приветственное слово</li>
-            <li class="pkg__feature muted">Эксклюзив в нише</li>
+            <li class="pkg__feature included">Мастер-класс до 1,5 часов</li>
+            <li class="pkg__feature included">Видео-визитка в соцсетях проекта</li>
+            <li class="pkg__feature included">Логотип на сайте и бейджах</li>
+            <li class="pkg__feature included">Ссылки в постах проекта</li>
+            <li class="pkg__feature included">Приветственное слово на открытии</li>
+            <li class="pkg__feature included">Сюжет о вашей нише с победительницей</li>
           </ul>
-          <p class="pkg__gift">+ сертификат победительнице от 10 000 ₽</p>
-          <a href="https://t.me/m/9i_-uw34MmNi" target="_blank" class="btn btn--outline btn--full">Участвовать</a>
+          <p class="pkg__gift">+ сертификат победительнице от 15 000 ₽</p>
+          <a href="https://t.me/JZPMUstudio" target="_blank" class="btn btn--outline btn--full">Участвовать</a>
         </div>
 
         <div class="pkg pkg--featured">
-          <div class="pkg__badge">ТОП</div>
+          <div class="pkg__badge">Популярный</div>
           <div class="pkg__header">
             <div class="pkg__name">Спонсор-эксперт</div>
-            <div class="pkg__price">18 000 ₽</div>
-            <p class="pkg__note">Возможна рассрочка</p>
+            <div class="pkg__price">40 000 ₽</div>
           </div>
+          <p class="pkg__diff">Всё из «Эксперта» — и вы единственный в своей нише.</p>
           <ul class="pkg__features">
-            <li class="pkg__feature included">Пост во всех соц сетях проекта</li>
-            <li class="pkg__feature included">Лого на баннере</li>
-            <li class="pkg__feature included">Лого на онлайн-баннере</li>
-            <li class="pkg__feature included">Возможность дарить подарки</li>
-            <li class="pkg__feature included">Распространение материалов</li>
-            <li class="pkg__feature included">Упоминание на закрытии</li>
-            <li class="pkg__feature included"><strong>2 аккаунта</strong> от компании</li>
-            <li class="pkg__feature included">Рекламный ролик &times; <strong>3</strong></li>
-            <li class="pkg__feature included">Упоминания &times; <strong>7</strong></li>
-            <li class="pkg__feature included">Мастер-класс</li>
-            <li class="pkg__feature included">Лого на бейджиках</li>
-            <li class="pkg__feature included">Видео-визитка</li>
-            <li class="pkg__feature included">Приветственное слово</li>
-            <li class="pkg__feature included"><strong>Эксклюзив в нише</strong></li>
+            <li class="pkg__feature included">Эксклюзив в нише</li>
+            <li class="pkg__feature included">Интервью или подкаст</li>
+            <li class="pkg__feature included">Ролап у основной сцены</li>
+            <li class="pkg__feature included">Центральные позиции логотипа</li>
+            <li class="pkg__feature included">Упоминания в соцсетях × 7</li>
           </ul>
-          <p class="pkg__gift">+ сертификат победительнице от 10 000 ₽</p>
-          <a href="https://t.me/m/nV7ZIpVNOWJi" target="_blank" class="btn btn--primary btn--full">Участвовать</a>
+          <p class="pkg__gift">+ сертификат победительнице от 15 000 ₽</p>
+          <a href="https://t.me/JZPMUstudio" target="_blank" class="btn btn--primary btn--full">Участвовать</a>
+        </div>
+
+        <div class="pkg">
+          <div class="pkg__header">
+            <div class="pkg__name">Генеральный</div>
+            <div class="pkg__price">120 000 ₽</div>
+            <p class="pkg__note">1 место в сезоне</p>
+          </div>
+          <p class="pkg__diff">Сезон идёт при вашей поддержке. Имя в анонсах и афишах.</p>
+          <ul class="pkg__features">
+            <li class="pkg__feature included">«Сезон при поддержке…»</li>
+            <li class="pkg__feature included">Два мастер-класса</li>
+            <li class="pkg__feature included">Рубрика на весь сезон</li>
+            <li class="pkg__feature included">Эксклюзив категории</li>
+            <li class="pkg__feature included">Право первым выбрать дату</li>
+          </ul>
+          <p class="pkg__gift">+ сертификат победительнице от 15 000 ₽</p>
+          <a href="https://t.me/JZPMUstudio" target="_blank" class="btn btn--outline btn--full">Участвовать</a>
         </div>
       </div>
 
-      <!-- RESPONSIBILITIES -->
       <div class="responsibilities">
         <div class="resp__col">
-          <h3>С команды организаторов:</h3>
+          <h3>С команды организаторов</h3>
           <ul>
             <li>Организация мероприятия и выполнение пунктов из пакета</li>
-            <li>Предоставление локаций для выступлений и мастер-классов</li>
+            <li>Площадки для мастер-классов</li>
             <li>Организация выпускного</li>
-            <li>PR проекта</li>
+            <li>Реклама проекта</li>
           </ul>
         </div>
         <div class="resp__col">
-          <h3>С эксперта/спонсора-эксперта:</h3>
+          <h3>С эксперта и выше</h3>
           <ul>
-            <li>Интересный мастер-класс (от 1 часа, с практической пользой)</li>
-            <li>Домашнее задание + проверка</li>
-            <li>Анонс проекта: 3 сторис + пост/reels</li>
-            <li>Подарок победительнице от 10 000 ₽</li>
+            <li>Мастер-класс от 1 часа с практической пользой</li>
+            <li>Домашнее задание и проверка</li>
+            <li>Анонс: 3 сторис + пост или рилс</li>
+            <li>Сертификат победительнице от 15 000 ₽</li>
           </ul>
         </div>
         <div class="resp__col">
-          <h3>Со спонсора:</h3>
+          <h3>Со спонсора</h3>
           <ul>
-            <li>Анонс проекта: 3 сторис + пост/reels</li>
+            <li>Анонс проекта: 3 сторис + пост или рилс</li>
           </ul>
         </div>
       </div>
-      <p class="packages__funding">Средства идут исключительно на организацию проекта и его рекламу. Часть средств — на организацию выпускного.</p>
+      <p class="packages__funding">Средства идут на организацию проекта, рекламу и выпускной. Дополнительно к любому пакету: +5 000 ₽ — одно из первых мест в расписании.</p>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer__inner">
       <div class="footer__left">
