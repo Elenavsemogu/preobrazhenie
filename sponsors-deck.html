@@ -130,11 +130,25 @@
       filter: brightness(.42) saturate(1.05);
       transform: scale(1.02);
     }
+    .slide--photo .slide__bg--winner {
+      top: 52px;
+      background-position: right top;
+      background-size: auto 100%;
+      background-repeat: no-repeat;
+      background-color: #1a1520;
+      filter: brightness(.62) saturate(1.05);
+      transform: none;
+    }
     .slide--photo .slide__veil {
       position: absolute;
       inset: 0;
       background:
         linear-gradient(105deg, rgba(20,16,28,.88) 0%, rgba(20,16,28,.55) 48%, rgba(20,16,28,.25) 100%);
+    }
+    .slide--photo:has(.slide__bg--winner) .slide__veil {
+      top: 52px;
+      background:
+        linear-gradient(90deg, rgba(20,16,28,.94) 0%, rgba(20,16,28,.82) 38%, rgba(20,16,28,.25) 62%, rgba(20,16,28,.08) 100%);
     }
 
     .slide__inner {
@@ -390,6 +404,9 @@
       object-fit: cover;
       display: block;
       filter: brightness(.85);
+    }
+    .media-card img.media-card__portrait {
+      object-position: center 18%;
     }
     .media-card figcaption {
       position: absolute;
@@ -934,7 +951,7 @@
           <figcaption>Выпускной<small>Участницы, эксперты и гости сезона</small></figcaption>
         </figure>
         <figure class="media-card">
-          <img src="assets/deck-winner-2026.jpg" alt="Победительница">
+          <img class="media-card__portrait" src="assets/deck-winner-2026.jpg" alt="Победительница">
           <figcaption>Победительница<small>Приз и преображение</small></figcaption>
         </figure>
         <figure class="media-card">
@@ -1208,7 +1225,7 @@
 
   <!-- 16 CTA -->
   <section class="slide slide--photo" data-slide>
-    <div class="slide__bg" style="background-image:url('assets/deck-winner-2026.jpg')"></div>
+    <div class="slide__bg slide__bg--winner" style="background-image:url('assets/deck-winner-2026.jpg')"></div>
     <div class="slide__veil"></div>
     <div class="slide__inner">
       <p class="eyebrow" style="color:#C4A8E0;opacity:1;">Следующий шаг</p>
