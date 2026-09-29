@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Материалы для проекта — Преображение</title>
+  <meta name="description" content="Загрузка материалов спонсора и эксперта для 8 сезона проекта Преображение.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="sponsor-form.css">
+</head>
+<body class="sf-body">
+
+  <header class="sf-top">
+    <a href="sponsors.html" class="sf-top__brand">
+      <img src="assets/p-letter-hq.png" alt="" width="28" height="28">
+      Преображение · материалы
+    </a>
+    <span class="sf-top__hint" id="sfStepLabel">Шаг 1 из 7</span>
+  </header>
+
+  <div class="sf-progress" aria-hidden="true"><div class="sf-progress__bar" id="sfProgress"></div></div>
+
+  <main class="sf-main">
+    <form id="sponsorForm" novalidate>
+
+      <!-- STEP 0: PACKAGE -->
+      <section class="sf-step is-active" data-step="0">
+        <p class="sf-eyebrow">Старт</p>
+        <h1 class="sf-title">Кто вы в проекте</h1>
+        <p class="sf-lead">От пакета зависит, какие материалы нужны. Заполните один раз — всё разложится по папкам для дизайна и для организаторов.</p>
+
+        <label class="sf-field">
+          <span>Пакет участия</span>
+          <select name="package" id="package" required>
+            <option value="">Выберите пакет</option>
+            <option value="sponsor">Спонсор — 10 000 ₽</option>
+            <option value="sponsor_plus">Спонсор+ — 15 000 ₽</option>
+            <option value="expert">Эксперт — 30 000 ₽</option>
+            <option value="sponsor_expert">Спонсор-эксперт — 40 000 ₽</option>
+            <option value="general">Генеральный партнёр — 120 000 ₽</option>
+          </select>
+        </label>
+
+        <div class="sf-grid-2">
+          <label class="sf-field">
+            <span>Имя и фамилия</span>
+            <input type="text" name="name" required placeholder="Анна Иванова">
+          </label>
+          <label class="sf-field">
+            <span>Название компании / бренда</span>
+            <input type="text" name="brand" required placeholder="Студия …">
+          </label>
+        </div>
+
+        <div class="sf-grid-2">
+          <label class="sf-field">
+            <span>Ниша (направление)</span>
+            <input type="text" name="niche" required placeholder="Косметолог, психолог, фитнес…">
+          </label>
+          <label class="sf-field">
+            <span>Телефон</span>
+            <input type="tel" name="phone" required placeholder="+7 …">
+          </label>
+        </div>
+
+        <div class="sf-grid-2">
+          <label class="sf-field">
+            <span>Telegram</span>
+            <input type="text" name="telegram" required placeholder="@username">
+          </label>
+          <label class="sf-field">
+            <span>Email</span>
+            <input type="email" name="email" placeholder="mail@example.com">
+          </label>
+        </div>
+
+        <div class="sf-note">
+          <strong>Дедлайны.</strong> Анкета и основные файлы — до 1 ноября 2026.
+          Печать на открытие — до 05.10.2026. Печать на выпускной — до 10.12.2026.
+          Адрес: Гоголя 36, этаж 2А, кабинет 202. На открытие ждём ~200 человек.
+        </div>
+      </section>
+
+      <!-- STEP 1: DESIGN ASSETS -->
+      <section class="sf-step" data-step="1" data-for="design">
+        <p class="sf-eyebrow">Для макетов</p>
+        <h1 class="sf-title">Логотип и фото</h1>
+        <p class="sf-lead">Это пойдёт в баннеры, сайт, бейджи и сцену. Если качество слабое — система предупредит. Для печати лучше сразу высокое разрешение.</p>
+
+        <div class="sf-upload" data-upload="logo">
+          <div class="sf-upload__head">
+            <h3>Логотип</h3>
+            <span class="sf-badge sf-badge--design">дизайн</span>
+          </div>
+          <p class="sf-upload__hint">SVG или PNG с прозрачностью. Длинная сторона от 1500 px. JPEG — только если другого нет.</p>
+          <input type="file" name="logo" accept="image/png,image/svg+xml,image/webp,image/jpeg,.ai,.eps" required>
+          <div class="sf-upload__preview" hidden></div>
+          <div class="sf-upload__status" aria-live="polite"></div>
+        </div>
+
+        <div class="sf-upload" data-upload="photo">
+          <div class="sf-upload__head">
+            <h3>Фото на однотонном фоне</h3>
+            <span class="sf-badge sf-badge--design">дизайн</span>
+          </div>
+          <p class="sf-upload__hint">Портрет или командное фото для рекламных материалов. Длинная сторона от 2000 px. Файл, не скрин из сторис.</p>
+          <input type="file" name="photo" accept="image/jpeg,image/png,image/webp" required>
+          <div class="sf-upload__preview" hidden></div>
+          <div class="sf-upload__status" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <!-- STEP 2: SOCIALS + AD -->
+      <section class="sf-step" data-step="2">
+        <p class="sf-eyebrow">Связь и реклама</p>
+        <h1 class="sf-title">Соцсети и ролик 15 секунд</h1>
+
+        <label class="sf-field">
+          <span>Instagram</span>
+          <input type="url" name="instagram" placeholder="https://instagram.com/…">
+        </label>
+        <label class="sf-field">
+          <span>VK</span>
+          <input type="url" name="vk" placeholder="https://vk.com/…">
+        </label>
+        <label class="sf-field">
+          <span>Telegram-канал / MAX</span>
+          <input type="text" name="other_social" placeholder="ссылка">
+        </label>
+        <label class="sf-field">
+          <span>Сайт (если есть)</span>
+          <input type="url" name="website" placeholder="https://…">
+        </label>
+
+        <div class="sf-upload" data-upload="promo">
+          <div class="sf-upload__head">
+            <h3>Реклама до 15 секунд</h3>
+            <span class="sf-badge sf-badge--design">дизайн</span>
+          </div>
+          <p class="sf-upload__hint">Ролик для рилс или поста. MP4 / MOV, до 15 секунд.</p>
+          <input type="file" name="promo" accept="video/mp4,video/quicktime,video/webm">
+          <div class="sf-upload__status" aria-live="polite"></div>
+        </div>
+
+        <label class="sf-field">
+          <span>Текст описания к ролику / посту</span>
+          <textarea name="ad_copy" rows="4" required placeholder="Короткий текст, который можно поставить в подпись к публикации"></textarea>
+        </label>
+      </section>
+
+      <!-- STEP 3: PRINT -->
+      <section class="sf-step" data-step="3">
+        <p class="sf-eyebrow">Печать</p>
+        <h1 class="sf-title">Материалы на открытие и выпускной</h1>
+        <p class="sf-lead">Листовки, сертификаты, купоны, подарки, любой креатив, чтобы запомниться. Привезти: Гоголя 36, эт. 2А, каб. 202.</p>
+
+        <div class="sf-upload" data-upload="print_start">
+          <div class="sf-upload__head">
+            <h3>На старт проекта</h3>
+            <span class="sf-badge">до 05.10.2026 · ~200 гостей</span>
+          </div>
+          <p class="sf-upload__hint">Можно загрузить макеты сейчас (PDF/PNG) или отметить, что привезёте физ. тираж.</p>
+          <input type="file" name="print_start" accept=".pdf,image/png,image/jpeg,image/webp,.ai,.svg" multiple>
+          <div class="sf-upload__status" aria-live="polite"></div>
+        </div>
+        <label class="sf-field">
+          <span>Что именно будет на старте</span>
+          <textarea name="print_start_desc" rows="3" required placeholder="200 листовок А5, купоны на скидку 20%, мини-подарки…"></textarea>
+        </label>
+
+        <div class="sf-upload" data-upload="print_finale">
+          <div class="sf-upload__head">
+            <h3>На выпускной</h3>
+            <span class="sf-badge">до 10.12.2026</span>
+          </div>
+          <input type="file" name="print_finale" accept=".pdf,image/png,image/jpeg,image/webp,.ai,.svg" multiple>
+          <div class="sf-upload__status" aria-live="polite"></div>
+        </div>
+        <label class="sf-field">
+          <span>Что именно будет на выпускном</span>
+          <textarea name="print_finale_desc" rows="3" required placeholder="Сертификаты, розыгрыш, подарки гостям…"></textarea>
+        </label>
+
+        <div class="sf-upload sf-only" data-show="general" data-upload="rollup" hidden>
+          <div class="sf-upload__head">
+            <h3>Ролап у сцены</h3>
+            <span class="sf-badge sf-badge--design">только генеральный</span>
+          </div>
+          <p class="sf-upload__hint">Макет ролапа (PDF/PNG) и/или подтверждение, что привезёте готовый.</p>
+          <input type="file" name="rollup" accept=".pdf,image/png,image/jpeg,.ai,.svg">
+          <div class="sf-upload__status" aria-live="polite"></div>
+          <label class="sf-field" style="margin-top:12px">
+            <span>Комментарий по ролапу</span>
+            <input type="text" name="rollup_note" placeholder="Привезём готовый 85×200 / макет во вложении">
+          </label>
+        </div>
+      </section>
+
+      <!-- STEP 4: EXPERT CONTENT -->
+      <section class="sf-step sf-only" data-step="4" data-show="expert,sponsor_expert,general" hidden>
+        <p class="sf-eyebrow">Эксперт</p>
+        <h1 class="sf-title">О вас и мастер-классе</h1>
+        <p class="sf-lead">На МК открыто ничего не продаём. Даём пользу и практическое домашнее задание.</p>
+
+        <label class="sf-field">
+          <span>Регалии / о вас</span>
+          <textarea name="bio" rows="4" placeholder="Кто вы, опыт, чем известны"></textarea>
+        </label>
+        <label class="sf-field">
+          <span>Тема мастер-класса</span>
+          <textarea name="mk_theme" rows="3" placeholder="Точная тема"></textarea>
+        </label>
+        <label class="sf-field">
+          <span>Какая польза участницам</span>
+          <textarea name="mk_benefit" rows="4" placeholder="Что они унесут с собой, какие навыки получат"></textarea>
+        </label>
+        <label class="sf-field">
+          <span>Почему стоит прийти на ваш МК</span>
+          <textarea name="mk_why" rows="3"></textarea>
+        </label>
+
+        <div class="sf-upload" data-upload="vizitka">
+          <div class="sf-upload__head">
+            <h3>Видео-визитка ~60 секунд</h3>
+            <span class="sf-badge sf-badge--design">дизайн / контент</span>
+          </div>
+          <p class="sf-upload__hint">Однотонный фон, хорошее качество. В кадре: кто вы, чем полезны, тема МК, зачем приходить.</p>
+          <input type="file" name="vizitka" accept="video/mp4,video/quicktime,video/webm">
+          <div class="sf-upload__status" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <!-- STEP 5: HOMEWORK + TECH -->
+      <section class="sf-step sf-only" data-step="5" data-show="expert,sponsor_expert,general" hidden>
+        <p class="sf-eyebrow">Для Юлии · организация</p>
+        <h1 class="sf-title">Домашнее задание и техника</h1>
+        <p class="sf-lead">В проекте балльная система: баллы за сдачу ДЗ. Нужна полная прозрачность — что делать и как вы проверяете.</p>
+
+        <label class="sf-field">
+          <span>Домашнее задание подробно</span>
+          <textarea name="homework" rows="5" placeholder="Сколько заданий, что именно сделать, в каком виде сдать"></textarea>
+        </label>
+        <label class="sf-field">
+          <span>Как проверяете ДЗ</span>
+          <textarea name="homework_check" rows="3" placeholder="Срок, критерии, где принимают (чат / форма)"></textarea>
+        </label>
+        <label class="sf-field">
+          <span>Что нужно для проведения МК</span>
+          <textarea name="mk_tech" rows="3" placeholder="Проектор, стол, стул, розетка, вода…"></textarea>
+        </label>
+        <label class="sf-field">
+          <span>Доп. материалы для участниц</span>
+          <textarea name="extras" rows="3" placeholder="Тетради, чек-листы, ссылки — или «не планирую»"></textarea>
+        </label>
+        <label class="sf-field">
+          <span>Акции / скидки для участниц на время проекта</span>
+          <textarea name="offers" rows="3" placeholder="Или «акций нет»"></textarea>
+        </label>
+        <label class="sf-field">
+          <span>Подарок лучшей группе (необязательно)</span>
+          <textarea name="group_gift" rows="3" placeholder="Например: лами ресниц всем из группы-победителя. Или «не участвую»"></textarea>
+        </label>
+      </section>
+
+      <!-- STEP 6: GIFT -->
+      <section class="sf-step sf-only" data-step="6" data-show="sponsor_plus,expert,sponsor_expert,general" hidden>
+        <p class="sf-eyebrow">Для Юлии · приз</p>
+        <h1 class="sf-title">Подарок победительнице</h1>
+        <p class="sf-lead">Стоимость от 15 000 ₽. Победительница ничего не доплачивает. Подарок предоставляется в любом случае; допы по её желанию — отдельно.</p>
+
+        <label class="sf-field">
+          <span>Что дарите</span>
+          <textarea name="gift_desc" rows="4" required placeholder="Например: перманент — первичная процедура 15 000 ₽ и коррекция 7 500 ₽, обе без оплаты победительнице"></textarea>
+        </label>
+        <label class="sf-field">
+          <span>Оценка стоимости, ₽</span>
+          <input type="number" name="gift_value" min="15000" step="500" required placeholder="15000">
+        </label>
+      </section>
+
+      <!-- STEP 7: REVIEW -->
+      <section class="sf-step" data-step="7">
+        <p class="sf-eyebrow">Проверка</p>
+        <h1 class="sf-title">Почти готово</h1>
+        <p class="sf-lead">Проверьте предупреждения по файлам. После отправки создастся ваша папка на Google Drive — туда же можно догрузить тяжёлые видео, если браузер не принял.</p>
+
+        <div id="sfReview" class="sf-review"></div>
+        <div id="sfWarnings" class="sf-warnings" hidden></div>
+
+        <label class="sf-check">
+          <input type="checkbox" name="consent" required>
+          <span>Подтверждаю, что материалы можно использовать в рекламе проекта «Преображение», и обязуюсь привезти печать в срок по адресу Гоголя 36.</span>
+        </label>
+      </section>
+
+      <!-- SUCCESS -->
+      <section class="sf-step" data-step="done" hidden>
+        <p class="sf-eyebrow">Готово</p>
+        <h1 class="sf-title">Материалы приняты</h1>
+        <p class="sf-lead" id="sfDoneLead">Спасибо! Папка создана. Сохраните ссылку.</p>
+        <p id="sfFolderLink" class="sf-folder-link" hidden></p>
+        <div class="sf-note">
+          <strong>Что дальше.</strong> Елена заберёт из папки блок <code>01_design</code>.
+          Юлия увидит полную анкету в таблице и папке <code>03_ops</code>.
+          Если видео не загрузилось через форму — положите файлы в <code>04_video</code> и <code>01_design/promo_15s</code> вручную.
+        </div>
+        <a class="sf-btn sf-btn--primary" href="sponsors.html">На страницу спонсоров</a>
+      </section>
+
+      <div class="sf-nav" id="sfNav">
+        <button type="button" class="sf-btn sf-btn--ghost" id="sfPrev" hidden>Назад</button>
+        <button type="button" class="sf-btn sf-btn--primary" id="sfNext">Далее</button>
+        <button type="submit" class="sf-btn sf-btn--primary" id="sfSubmit" hidden>Отправить</button>
+      </div>
+      <p class="sf-error" id="sfFormError" hidden></p>
+    </form>
+  </main>
+
+  <script src="sponsor-form.js"></script>
+</body>
+</html>
