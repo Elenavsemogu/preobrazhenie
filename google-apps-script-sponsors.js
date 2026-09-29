@@ -13,7 +13,7 @@
  * Листы создадутся сами: «Полная» и «Дизайн»
  */
 
-var ROOT_FOLDER_ID = 'PASTE_DRIVE_FOLDER_ID_HERE';
+var ROOT_FOLDER_ID = '1YFlJaNI2PzRyWJtTJVwj-ryL4uotpOg2';
 
 var DESIGN_KEYS = {
   logo: '01_design/logo',
