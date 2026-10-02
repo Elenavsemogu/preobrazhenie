@@ -4,7 +4,7 @@
  *
  * Вставь URL веб-приложения GAS сюда после деплоя:
  */
-var SF_ENDPOINT = 'https://script.google.com/macros/s/AKfycby0RkPvukIPI8qymB9Qxqm1L2KV7D6fZUqY5CKX1-ncEuWs9ZyhiWxbM548iU48NvxW5w/exec';
+var SF_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxbT-Z1FJCGwXidNK27FDkvCjGSBbWPfaqbGKb917tU68nEluhz10JYJLJ3spt810Gmyg/exec';
 
 (function () {
   var form = document.getElementById('sponsorForm');
