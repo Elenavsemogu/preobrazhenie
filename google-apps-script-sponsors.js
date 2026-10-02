@@ -182,6 +182,10 @@ function saveFiles(folder, filesMap) {
 
 function appendSheets(data, folderUrl) {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
+  if (!ss) {
+    // Веб-приложение без привязанной таблицы — папка Drive всё равно создана
+    return;
+  }
   var full = getOrCreateSheet(ss, 'Полная', [
     'Дата', 'Пакет', 'Имя', 'Бренд', 'Ниша', 'Телефон', 'Telegram', 'Email',
     'Instagram', 'VK', 'Сайт', 'Регалии', 'Тема МК', 'Польза МК', 'Почему МК',
