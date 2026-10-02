@@ -31,7 +31,14 @@ function doGet() {
 
 function doPost(e) {
   try {
-    var data = JSON.parse(e.postData.contents);
+    if (!e || !e.postData || !e.postData.contents) {
+      throw new Error('Пустое тело запроса');
+    }
+    var raw = e.postData.contents;
+    if (raw.length > 45000000) {
+      throw new Error('Слишком большой объём файлов. Отправьте без тяжёлых видео — догрузите в Drive вручную.');
+    }
+    var data = JSON.parse(raw);
     var result = processSubmission(data);
     return ContentService
       .createTextOutput(JSON.stringify({ status: 'ok', folderUrl: result.folderUrl, folderId: result.folderId }))

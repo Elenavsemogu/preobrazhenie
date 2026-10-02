@@ -412,12 +412,10 @@ var SF_ENDPOINT = 'https://script.google.com/macros/s/AKfycby0RkPvukIPI8qymB9Qxq
 
   function fileToBase64(file) {
     return new Promise(function (resolve, reject) {
-      // Skip huge videos in POST — tell server to expect Drive manual upload
-      if (file.size > 8 * 1048576 && file.type.indexOf('video/') === 0) {
-        resolve({ skip: true, name: file.name, size: file.size, type: file.type });
-        return;
-      }
-      if (file.size > 12 * 1048576) {
+      // В POST нельзя тащить большие base64 — Apps Script / мобильный интернет отдают HTML-ошибку
+      var isVideo = file.type.indexOf('video/') === 0;
+      var limit = isVideo ? (2 * 1048576) : (3 * 1048576);
+      if (file.size > limit) {
         resolve({ skip: true, name: file.name, size: file.size, type: file.type });
         return;
       }
@@ -427,9 +425,45 @@ var SF_ENDPOINT = 'https://script.google.com/macros/s/AKfycby0RkPvukIPI8qymB9Qxq
         var base64 = String(dataUrl).split(',')[1] || '';
         resolve({ name: file.name, type: file.type, size: file.size, data: base64 });
       };
-      reader.onerror = reject;
+      reader.onerror = function () {
+        reject(new Error('Не удалось прочитать файл «' + file.name + '». Выберите его заново.'));
+      };
       reader.readAsDataURL(file);
     });
+  }
+
+  function trimPayloadForSend(payload) {
+    // Если суммарно слишком тяжело — оставляем только мета + skip-заглушки
+    var MAX_CHARS = 3.2 * 1048576;
+    var copy = JSON.parse(JSON.stringify(payload));
+    var raw = JSON.stringify(copy);
+    if (raw.length <= MAX_CHARS) return copy;
+    if (copy.files) {
+      Object.keys(copy.files).forEach(function (k) {
+        copy.files[k] = (copy.files[k] || []).map(function (f) {
+          if (f.skip || !f.data) return f;
+          return { skip: true, name: f.name, size: f.size, type: f.type, trimmed: true };
+        });
+      });
+    }
+    return copy;
+  }
+
+  function formatSubmitError(err, responseText) {
+    if (responseText && /^\s*</.test(responseText)) {
+      return 'Сервер не принял отправку (часто из‑за тяжёлых файлов или слабого интернета). Оставьте в форме лого и фото до 3 МБ — остальное догрузите в папку Drive после успеха, или напишите Юлии.';
+    }
+    var msg = (err && err.message) ? err.message : '';
+    if (!msg || msg === '[object ProgressEvent]' || /ProgressEvent/.test(msg)) {
+      return 'Не удалось прочитать один из файлов или оборвалась сеть. Уберите тяжёлые видео из формы и попробуйте снова.';
+    }
+    if (/Failed to fetch|NetworkError|Load failed|abort|AbortError/i.test(msg)) {
+      return 'Сеть оборвалась или истекло время ожидания. Проверьте интернет, уберите файлы больше 3 МБ и попробуйте ещё раз.';
+    }
+    if (/JSON|Unexpected token/i.test(msg)) {
+      return 'Ответ сервера повреждён (часто из‑за тяжёлых файлов). Отправьте без больших видео/PDF — догрузите их в Drive вручную.';
+    }
+    return msg;
   }
 
   async function collectPayload() {
@@ -497,25 +531,46 @@ var SF_ENDPOINT = 'https://script.google.com/macros/s/AKfycby0RkPvukIPI8qymB9Qxq
     btnSubmit.disabled = true;
     btnSubmit.textContent = 'Отправляем…';
     formError.hidden = true;
+    var responseText = '';
     try {
-      var body = await collectPayload();
+      var body = trimPayloadForSend(await collectPayload());
+      var skipped = 0;
+      if (body.files) {
+        Object.keys(body.files).forEach(function (k) {
+          (body.files[k] || []).forEach(function (f) { if (f.skip) skipped++; });
+        });
+      }
+      var controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+      var timer = controller ? setTimeout(function () { controller.abort(); }, 90000) : null;
       var res = await fetch(SF_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(body)
+        body: JSON.stringify(body),
+        redirect: 'follow',
+        signal: controller ? controller.signal : undefined
       });
-      var json = await res.json();
-      if (!json || json.status !== 'ok') throw new Error(json && json.error ? json.error : 'Ошибка сервера');
-      showDone(json.folderUrl || null, false);
+      if (timer) clearTimeout(timer);
+      responseText = await res.text();
+      var json;
+      try {
+        json = JSON.parse(responseText);
+      } catch (parseErr) {
+        throw new Error(formatSubmitError(parseErr, responseText));
+      }
+      if (!json || json.status !== 'ok') {
+        throw new Error((json && json.error) ? json.error : 'Ошибка сервера');
+      }
+      showDone(json.folderUrl || null, false, skipped);
     } catch (err) {
-      formError.textContent = 'Не отправилось: ' + (err.message || err) + '. Попробуйте ещё раз или напишите Юлии.';
+      var friendly = formatSubmitError(err, responseText);
+      formError.textContent = 'Не отправилось: ' + friendly + ' Если не получается — напишите Юлии.';
       formError.hidden = false;
       btnSubmit.disabled = false;
       btnSubmit.textContent = 'Отправить';
     }
   });
 
-  function showDone(folderUrl, localMode) {
+  function showDone(folderUrl, localMode, skippedCount) {
     steps.forEach(function (s) { s.classList.remove('is-active'); });
     var done = form.querySelector('[data-step="done"]');
     done.hidden = false;
@@ -529,7 +584,10 @@ var SF_ENDPOINT = 'https://script.google.com/macros/s/AKfycby0RkPvukIPI8qymB9Qxq
       lead.textContent = 'Пока сервер Drive не подключён — скачан JSON-паспорт. Подключите Google Apps Script (см. google-apps-script-sponsors.js) и вставьте URL в sponsor-form.js.';
       link.hidden = true;
     } else if (folderUrl) {
-      lead.textContent = 'Папка на Google Drive создана.';
+      var extra = skippedCount
+        ? ' Часть тяжёлых файлов не ушла через форму — откройте папку и догрузите их вручную (там лежат подсказки _НУЖНО_ЗАГРУЗИТЬ_).'
+        : '';
+      lead.textContent = 'Папка на Google Drive создана.' + extra;
       link.hidden = false;
       link.innerHTML = '<a href="' + folderUrl + '" target="_blank" rel="noopener">' + folderUrl + '</a>';
     }
